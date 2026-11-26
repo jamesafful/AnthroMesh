@@ -1,0 +1,32 @@
+rules:
+  - rule_id: pol_deny_unauthorized_finance
+    name: Block Unauthorized Agents from Finance
+    description: Only explicitly approved finance agents may query financial preferences.
+    effect: deny
+    domains: [finance, banking]
+    allowed_callers: [trusted_finance_agent]
+    priority: 10
+
+  - rule_id: pol_escalate_wire_transfer
+    name: Escalate Wire Transfers and Credentials
+    description: Never autonomously approve wire transfers, private keys, or password sharing.
+    effect: escalate
+    domains: ["*"]
+    blocked_keywords: ["wire transfer", "private key", "root password", "ssn"]
+    priority: 20
+
+  - rule_id: pol_escalate_monetary
+    name: Escalate Purchases Above $250
+    description: Require human sign-off for any action exceeding $250.
+    effect: escalate
+    domains: ["*"]
+    max_monetary_value: 250.0
+    priority: 30
+
+  - rule_id: pol_escalate_high_risk
+    name: Escalate High/Critical Risk Actions
+    description: Autonomous execution is restricted to low and medium risk tiers.
+    effect: escalate
+    domains: ["*"]
+    max_risk_tier: medium
+    priority: 40

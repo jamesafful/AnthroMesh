@@ -1,0 +1,50 @@
+{
+  "registration": {
+    "doi": "10.5281/zenodo.24560763",
+    "published_record_created": "2026-11-26T12:57:18.284017+00:00",
+    "record_url": "https://zenodo.org/records/24560763"
+  },
+  "policy": "frozen previous-answer survey policy",
+  "runtime_fast_tier_validation": false,
+  "validity_envelopes": [
+    {
+      "version": "1",
+      "status": "experimental",
+      "recommended_use": "research_only",
+      "domain": "overall",
+      "evidence_ids": [],
+      "observed_accuracy": 0.840275675736275,
+      "accuracy_interval": [
+        0.8334538503794886,
+        0.8470274330429713
+      ],
+      "grants_authority": false
+    },
+    {
+      "version": "1",
+      "status": "experimental",
+      "recommended_use": "research_only",
+      "domain": "pricing",
+      "evidence_ids": [],
+      "observed_accuracy": 0.8377055796589647,
+      "accuracy_interval": [
+        0.8306931692059328,
+        0.8446170921198668
+      ],
+      "grants_authority": false
+    },
+    {
+      "version": "1",
+      "status": "experimental",
+      "recommended_use": "research_only",
+      "domain": "non_pricing",
+      "evidence_ids": [],
+      "observed_accuracy": 0.9309153713298791,
+      "accuracy_interval": [
+        0.9101899827288429,
+        0.9516407599309153
+      ],
+      "grants_authority": false
+    }
+  ]
+}

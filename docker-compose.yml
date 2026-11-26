@@ -1,0 +1,36 @@
+services:
+  anthromesh-a2a:
+    build: .
+    container_name: anthromesh-a2a
+    ports:
+      - "127.0.0.1:8082:8082"
+    environment:
+      - ANTHROMESH_DB_PATH=/data/anthromesh_vault.db
+      - ANTHROMESH_POLICY_PATH=/app/examples/sample_policies.yaml
+      - ANTHROMESH_ADAPTER=${ANTHROMESH_ADAPTER:-heuristic}
+      - ANTHROMESH_MODEL=${ANTHROMESH_MODEL:-llama3.2}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    volumes:
+      - anthromesh_data:/data
+    command: ["anthromesh", "serve-a2a", "--host", "0.0.0.0", "--allow-network-bind", "--port", "8082"]
+
+  anthromesh-mcp:
+    build: .
+    container_name: anthromesh-mcp
+    ports:
+      - "127.0.0.1:8081:8081"
+    environment:
+      - ANTHROMESH_DB_PATH=/data/anthromesh_vault.db
+      - ANTHROMESH_POLICY_PATH=/app/examples/sample_policies.yaml
+      - ANTHROMESH_ADAPTER=${ANTHROMESH_ADAPTER:-heuristic}
+      - ANTHROMESH_MODEL=${ANTHROMESH_MODEL:-llama3.2}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    volumes:
+      - anthromesh_data:/data
+    command: ["anthromesh", "serve-mcp", "--transport", "http", "--host", "0.0.0.0", "--allow-network-bind", "--port", "8081"]
+
+volumes:
+  anthromesh_data:

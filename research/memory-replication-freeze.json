@@ -1,0 +1,50 @@
+{
+  "status": "local freeze candidate; external preregistration pending; no outcomes scored",
+  "dataset_revision": "f883165a3026fde855dfd448e0cd16443ab257b6",
+  "reserved_count": 1166,
+  "reserve_ordered_participant_ids_sha256": "e1ed94f24aafe179f8e104d5e999429088c37f9aecc3c23c8cc67e5bbfc66603",
+  "membership_source": "research/participant-use-ledger.json",
+  "role_hashes": {
+    "memory_development": "f699233ac6df8ef23cba1c23e1f75d58b78f81dd24e816ceef683efcc79a4f95",
+    "memory_closed_holdout": "db64ae8f6c97c5f7686a84782d6f6478daf343a9a0a566181584d30bc4240bc2",
+    "memory_replication_reserve": "e1ed94f24aafe179f8e104d5e999429088c37f9aecc3c23c8cc67e5bbfc66603"
+  },
+  "replication_rules": {
+    "status": "local draft; registration pending",
+    "protocol": "anthromesh-repeated-memory-v1",
+    "original_plan_sha256": "406340c87089ff5367c5e7893fe730c566c1a877fbcbcc3f287e3994cdc55c7d",
+    "items": [
+      "QID9_37",
+      "QID9_12",
+      "QID9_16",
+      "QID9_3",
+      "QID9_13",
+      "QID9_33",
+      "QID9_4",
+      "QID9_19",
+      "QID9_35",
+      "QID9_5",
+      "QID9_21",
+      "QID9_11",
+      "QID9_22",
+      "QID9_27",
+      "QID167",
+      "QID9_18",
+      "QID9_38",
+      "QID9_1"
+    ],
+    "minimum_coverage": 0.2,
+    "minimum_paired_gain": 0.05,
+    "minimum_interval_lower_bound": "strictly positive",
+    "bootstrap_draws": 5000
+  },
+  "source_artifact_sha256": {
+    "examples/public-memory-gate-plan.md": "406340c87089ff5367c5e7893fe730c566c1a877fbcbcc3f287e3994cdc55c7d",
+    "examples/public-memory-gate-report.json": "6989ea8470d782d792e846409eee040cb9f84aa1efdce939ff81f1ac7a9c3113",
+    "examples/memory-replication-plan.md": "26f9c9656492c8b19afe3b5fee727ff75aab6d7b46bdafb451cdd2887b27cab9",
+    "examples/replicate_memory.py": "9c5153511c6531cc2ae68257495ac219bbbc614419bd0503c06ae8dda7c3f6f9"
+  },
+  "release_projection": "Publish aggregate counts, seeds and hashes. Keep the row-level local membership ledger out of the release archive.",
+  "runtime_distinction": "Public task tests a frozen previous-answer statistical policy. Production fast path requires at least two agreeing records. Never duplicate a survey response to simulate that requirement.",
+  "evaluation_columns_sha256": "b414568784521c263db8b210cd5b2488603313a2634ba9dfd71aab09b2ca03a8"
+}

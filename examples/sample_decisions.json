@@ -1,0 +1,77 @@
+[
+  {
+    "decision_id": "dec_seed_01",
+    "subject_id": "user_alex",
+    "domain": "code_review",
+    "context": "PR updates numerical solver convergence criteria without adding unit tests.",
+    "options_considered": [
+      {
+        "option_id": "request_changes",
+        "label": "Request Changes",
+        "description": "Require tests before merge"
+      },
+      {
+        "option_id": "approve_with_nits",
+        "label": "Approve with Nits",
+        "description": "Allow merge with minor notes"
+      }
+    ],
+    "chosen_action": "request_changes",
+    "rationale": "Verification-first rule: numerical changes require deterministic unit tests.",
+    "risk_tier": "medium",
+    "tags": [
+      "verification",
+      "testing"
+    ]
+  },
+  {
+    "decision_id": "dec_seed_02",
+    "subject_id": "user_alex",
+    "domain": "code_review",
+    "context": "PR modifies solver boundary conditions and skips CI regression suite.",
+    "options_considered": [
+      {
+        "option_id": "request_changes",
+        "label": "Request Changes",
+        "description": "Require regression tests"
+      },
+      {
+        "option_id": "approve_with_nits",
+        "label": "Approve with Nits",
+        "description": "Allow merge with minor notes"
+      }
+    ],
+    "chosen_action": "request_changes",
+    "rationale": "Boundary condition edits cannot bypass regression verification.",
+    "risk_tier": "medium",
+    "tags": [
+      "verification",
+      "ci"
+    ]
+  },
+  {
+    "decision_id": "dec_seed_03",
+    "subject_id": "user_alex",
+    "domain": "calendar",
+    "context": "60-minute recurring status meeting during morning deep-work hours with no agenda.",
+    "options_considered": [
+      {
+        "option_id": "decline_async",
+        "label": "Decline & Request Async",
+        "description": "Move to written doc"
+      },
+      {
+        "option_id": "accept_meeting",
+        "label": "Accept Meeting",
+        "description": "Join live call"
+      }
+    ],
+    "chosen_action": "decline_async",
+    "rationale": "Protect deep-work mornings; status syncs without decision items go async.",
+    "risk_tier": "low",
+    "tags": [
+      "deep_work",
+      "async"
+    ]
+  }
+]

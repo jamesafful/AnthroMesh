@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://anthromesh.dev/schemas/decision_log.schema.json",
+  "title": "DecisionLog",
+  "description": "Structured record of a real human decision, including rejected alternatives and rationale.",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "subject_id",
+    "domain",
+    "context",
+    "options_considered",
+    "chosen_action",
+    "rationale"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string"
+    },
+    "options_considered": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "option_id",
+          "label"
+        ],
+        "properties": {
+          "option_id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "chosen_action": {
+      "type": "string"
+    },
+    "rejected_options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "risk_tier": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+# AnthroMesh research release candidate
+
+## Findings
+
+Cross-question personal prediction did not clear its registered development
+program threshold on the 200-person public holdout. The participant-mean
+gain over majority was +0.18 percentage points, with a 95% interval from
+−0.36 to +0.72. The truncated Qwen comparison is exploratory.
+
+## Preregistered exact-memory replication
+
+The [frozen protocol and scorer](https://doi.org/10.5281/zenodo.24560763) were published before
+scoring the 1,166 reserved Wave 4 participants. The frozen previous-answer
+policy passed all three gates: at least 20% coverage, at least +5 percentage
+points over matched majority, and a strictly positive 95% interval lower
+bound for that gain. Accuracy and gains are participant means. Coverage is
+the share of eligible paired answers. Intervals bootstrap participants.
+
+| Scope | Answered / eligible | Coverage | Copy accuracy (95% CI) | Matched majority | Gain (95% CI) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Overall | 20,401 / 28,831 | 70.8% | 84.0% (83.3% to 84.7%) | 55.5% | +28.5 pp (+27.6 to +29.5) |
+| Pricing | 19,822 / 20,988 | 94.4% | 83.8% (83.1% to 84.5%) | 54.4% | +29.4 pp (+28.4 to +30.3) |
+| Non pricing | 579 / 7,843 | 7.4% | 93.1% (91.0% to 95.2%) | 94.5% | -1.4 pp (-3.5 to +0.7) |
+
+Copy-all and expected random selection at matched counts both scored 76.4%
+overall. Copying on escalated cases scored 57.9%. Within pricing, copy-all
+scored 83.75% and the gate scored 83.77%. The non-pricing result comes from
+one qualifying item and fell below majority. The same 18 of 34 items were
+frozen, including 17 pricing items, so the replication extends the result
+to more participants on the same items.
+
+The survey policy copies one earlier answer. Runtime memory requires at
+least two agreeing records. The [research validity envelopes](memory-replication-validity.json)
+carry survey bounds. Runtime response bounds remain unset.
+
+## Development-only pricing transfer
+
+On held-out pricing categories in the pooled-scorer comparison, a personal
+intercept reached 62.25% accuracy and 0.65898 log loss versus 51.89% and
+0.69725 for the population prior. The personal slope comparison lost 0.3
+points in its development experiment. The pooled scorer added 0.03 points
+over the intercept and slightly increased log loss to 0.65919.
+
+## Categorical survey-anchor replay
+
+On 23 Twin-2K-500 items with at least 100 paired cases, we used only the
+previously opened 200-participant pool. Earlier answers were represented by
+a fixed 80%-one-hot/20%-uniform proxy. This is a real-response resampling
+study with a fixed earlier-answer predictor. It does not use LLM forecasts.
+
+At nominal 95%, mean joint coverage across items with random anchors was
+94.1% for human-only, 98.1% for untuned PPI-style intervals, and 96.5% for
+split power-tuned intervals. Average interval width was 0.378, 0.347 and
+0.360 respectively. Using the same total number of human labels as tuning
+plus estimation, human-only achieved 94.9% coverage with width 0.278.
+Conservative bounded prediction-powered intervals achieved 100% coverage
+with mean width 1.000, effectively the full probability range.
+
+When anchors were selected by prior answer, tuned coverage fell to 87.9%.
+When the forecast distribution shifted, it fell to 85.2%. These exploratory
+results are specific to the observed pool and assumptions. They establish
+neither uniform subgroup coverage nor lower data requirements. The earlier-
+answer-defined subgroup mean absolute proxy error gap reached 0.111 for one
+item. It is descriptive. Tuned estimates are marginal and approximate.
+
+## Operational scope
+
+The memory-only route rejects autonomous approval for structured query
+metadata and sends the case to the owner. The MCP client now preserves that
+metadata. Security checks are internal; independent review is pending.
+Usability, demand, and real-world false approvals remain unmeasured.
+
+The aggregate accounting file documents 2,058 participant roles, allocation
+seeds, and membership hashes. Raw response records and the local membership
+ledger are excluded. The full-context Mega-Study transfer test remains pending.
+
+## Sources
+
+- [Twin-2K-500 release](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500)
+- [Prediction-powered inference](https://arxiv.org/abs/2301.09633)
+- [PPI++](https://arxiv.org/abs/2311.01453)

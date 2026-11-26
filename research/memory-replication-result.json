@@ -1,0 +1,74 @@
+{
+  "participants": 1166,
+  "policy": "frozen previous-answer survey policy",
+  "runtime_fast_tier_validation": false,
+  "passes": true,
+  "results": {
+    "overall": {
+      "paired": 28831,
+      "answered": 20401,
+      "participants_answered": 1166,
+      "coverage": 0.7076063958933093,
+      "copy_accuracy": 0.840275675736275,
+      "copy_accuracy_ci95": [
+        0.8334538503794886,
+        0.8470274330429713
+      ],
+      "matched_majority_accuracy": 0.5549894057108263,
+      "gain": 0.2852862700254487,
+      "gain_ci95": [
+        0.2755047702328502,
+        0.2948491575017657
+      ],
+      "copy_all_accuracy": 0.7643874048960185,
+      "random_matched_copy_expected_accuracy": 0.7643874048960185,
+      "escalated_copy_accuracy": 0.5792851016907621
+    },
+    "pricing": {
+      "paired": 20988,
+      "answered": 19822,
+      "participants_answered": 1166,
+      "coverage": 0.9444444444444444,
+      "copy_accuracy": 0.8377055796589647,
+      "copy_accuracy_ci95": [
+        0.8306931692059328,
+        0.8446170921198668
+      ],
+      "matched_majority_accuracy": 0.544142871556856,
+      "gain": 0.29356270810210877,
+      "gain_ci95": [
+        0.2835233578851781,
+        0.3032993643426496
+      ],
+      "copy_all_accuracy": 0.8375262054507338,
+      "random_matched_copy_expected_accuracy": 0.8375262054507338,
+      "escalated_copy_accuracy": 0.8344768439108061
+    },
+    "non_pricing": {
+      "paired": 7843,
+      "answered": 579,
+      "participants_answered": 579,
+      "coverage": 0.07382379191635853,
+      "copy_accuracy": 0.9309153713298791,
+      "copy_accuracy_ci95": [
+        0.9101899827288429,
+        0.9516407599309153
+      ],
+      "matched_majority_accuracy": 0.9447322970639033,
+      "gain": -0.013816925734024179,
+      "gain_ci95": [
+        -0.03454231433506045,
+        0.0069084628670120895
+      ],
+      "copy_all_accuracy": 0.567475972664652,
+      "random_matched_copy_expected_accuracy": 0.5821291498752638,
+      "escalated_copy_accuracy": 0.5365446922050695
+    }
+  },
+  "registration": {
+    "doi": "10.5281/zenodo.24560763",
+    "published_record_created": "2026-11-26T12:57:18.284017+00:00",
+    "record_url": "https://zenodo.org/records/24560763"
+  },
+  "manifest_sha256": "63be8661b27fba94ee50a0777c48c0964f5952130255ff468f58727e3fb98855"
+}

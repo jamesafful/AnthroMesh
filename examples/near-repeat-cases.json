@@ -1,0 +1,62 @@
+[
+  [
+    "Buy a refill pack for $8.",
+    "Purchase the refill pack for eight dollars.",
+    "Buy a refill pack for $18."
+  ],
+  [
+    "Keep the Friday sync if all owners can attend.",
+    "Keep Friday’s sync if every owner can make it.",
+    "Keep the Friday sync if half of the owners can attend."
+  ],
+  [
+    "Use quiet mode in the shared office.",
+    "Enable quiet mode in the office we share.",
+    "Use quiet mode in the hallway."
+  ],
+  [
+    "Order printer paper with free shipping.",
+    "Buy the printer paper if delivery costs nothing.",
+    "Order printer paper with a $12 shipping fee."
+  ],
+  [
+    "Reserve a refundable room for Tuesday.",
+    "Book a cancelable room for Tuesday.",
+    "Reserve a nonrefundable room for Tuesday."
+  ],
+  [
+    "Schedule the call at 9 a.m. Eastern.",
+    "Set the call for nine in the morning New York time.",
+    "Schedule the call at 9 a.m. Pacific."
+  ],
+  [
+    "Choose the blue notebook if it has 100 pages.",
+    "Pick the blue notebook if it contains one hundred pages.",
+    "Choose the blue notebook if it has 20 pages."
+  ],
+  [
+    "Share the draft with the internal team.",
+    "Send the draft to colleagues on the project team.",
+    "Share the draft with the external vendor."
+  ],
+  [
+    "Keep the reminder if it occurs once.",
+    "Leave the one-time reminder enabled.",
+    "Keep the reminder if it repeats hourly."
+  ],
+  [
+    "Buy the reusable mug for $10 including tax.",
+    "Purchase the reusable mug for ten dollars total.",
+    "Buy the reusable mug for $10 before a $5 surcharge."
+  ],
+  [
+    "Accept if the meeting has an agenda.",
+    "Accept the meeting if an agenda is provided.",
+    "Accept if the agenda was removed."
+  ],
+  [
+    "Offer a digital copy if a paper copy is unnecessary.",
+    "Send a digital version when no printed copy is needed.",
+    "Offer a digital copy when a signed paper copy is required."
+  ]
+]

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://anthromesh.dev/schemas/cohort_profile.schema.json",
+  "title": "CohortProfile",
+  "description": "Empirically grounded human population cohort with stratified archetypes and variance priors.",
+  "type": "object",
+  "required": [
+    "cohort_id",
+    "name",
+    "domain",
+    "archetypes"
+  ],
+  "properties": {
+    "cohort_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "archetypes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "archetype_id",
+          "label",
+          "weight",
+          "traits",
+          "prior_tendencies"
+        ],
+        "properties": {
+          "archetype_id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "is_long_tail": {
+            "type": "boolean"
+          },
+          "traits": {
+            "type": "object"
+          },
+          "prior_tendencies": {
+            "type": "object"
+          },
+          "sample_rationales": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "population_weighted": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

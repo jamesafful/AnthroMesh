@@ -1,0 +1,41 @@
+{
+  "realm": "anthromesh-test",
+  "enabled": true,
+  "sslRequired": "none",
+  "clientScopes": [
+    {
+      "name": "twin:read:calendar",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      }
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "smoke-client",
+      "secret": "anthromesh-disposable-secret",
+      "enabled": true,
+      "publicClient": false,
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "protocol": "openid-connect",
+      "defaultClientScopes": [
+        "basic",
+        "twin:read:calendar"
+      ],
+      "protocolMappers": [
+        {
+          "name": "anthromesh audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "https://anthromesh.example/mcp",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ]
+}

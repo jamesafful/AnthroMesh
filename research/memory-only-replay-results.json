@@ -1,0 +1,795 @@
+{
+  "design": "builder-authored synthetic examples; all changes stipulated consequential",
+  "optional_local_embedding_model": null,
+  "semantic_endpoint_used_for": null,
+  "summary": {
+    "exact": {
+      "cases": 12,
+      "actions": {
+        "approved": 12
+      },
+      "fast_approvals": 12,
+      "lexical_top_matches": 12,
+      "hybrid_top_matches": null,
+      "owner_tickets": 0,
+      "incorrect_yes_approvals_if_changed": null
+    },
+    "paraphrase": {
+      "cases": 12,
+      "actions": {
+        "escalate": 12
+      },
+      "fast_approvals": 0,
+      "lexical_top_matches": 11,
+      "hybrid_top_matches": null,
+      "owner_tickets": 12,
+      "incorrect_yes_approvals_if_changed": null
+    },
+    "changed": {
+      "cases": 12,
+      "actions": {
+        "escalate": 12
+      },
+      "fast_approvals": 0,
+      "lexical_top_matches": 12,
+      "hybrid_top_matches": null,
+      "owner_tickets": 12,
+      "incorrect_yes_approvals_if_changed": 0
+    },
+    "age_89": {
+      "cases": 12,
+      "actions": {
+        "approved": 12
+      },
+      "fast_approvals": 12,
+      "lexical_top_matches": 12,
+      "hybrid_top_matches": null,
+      "owner_tickets": 0,
+      "incorrect_yes_approvals_if_changed": null
+    },
+    "age_91": {
+      "cases": 12,
+      "actions": {
+        "escalate": 12
+      },
+      "fast_approvals": 0,
+      "lexical_top_matches": 12,
+      "hybrid_top_matches": null,
+      "owner_tickets": 12,
+      "incorrect_yes_approvals_if_changed": null
+    },
+    "age_120": {
+      "cases": 12,
+      "actions": {
+        "escalate": 12
+      },
+      "fast_approvals": 0,
+      "lexical_top_matches": 12,
+      "hybrid_top_matches": null,
+      "owner_tickets": 12,
+      "incorrect_yes_approvals_if_changed": null
+    }
+  },
+  "cases": [
+    {
+      "scenario": 1,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 1,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 1,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 1,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 1,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 1,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 2,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 2,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 2,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 2,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 2,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 2,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 3,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 3,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 3,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 3,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 3,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 3,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 4,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 4,
+      "kind": "paraphrase",
+      "lexical_top_is_target": false,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 4,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 4,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 4,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 4,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 5,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 5,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 5,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 5,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 5,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 5,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 6,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 6,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 6,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 6,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 6,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 6,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 7,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 7,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 7,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 7,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 7,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 7,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 8,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 8,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 8,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 8,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 8,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 8,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 9,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 9,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 9,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 9,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 9,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 9,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 10,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 10,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 10,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 10,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 10,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 10,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 11,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 11,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 11,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 11,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 11,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 11,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 12,
+      "kind": "exact",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 12,
+      "kind": "paraphrase",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 12,
+      "kind": "changed",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 12,
+      "kind": "age_89",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": true,
+      "action": "approved",
+      "choice": "yes",
+      "has_owner_ticket": false
+    },
+    {
+      "scenario": 12,
+      "kind": "age_91",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    },
+    {
+      "scenario": 12,
+      "kind": "age_120",
+      "lexical_top_is_target": true,
+      "hybrid_top_is_target": null,
+      "fast_approved": false,
+      "action": "escalate",
+      "choice": null,
+      "has_owner_ticket": true
+    }
+  ]
+}

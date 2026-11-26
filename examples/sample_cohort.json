@@ -1,0 +1,84 @@
+{
+  "cohort_id": "enterprise_eng_leaders_v1",
+  "name": "Enterprise Engineering & Research Leaders",
+  "description": "Stratified cohort covering pragmatic adopters, velocity builders, air-gapped architects, and strict skeptics.",
+  "domain": "ai_adoption",
+  "archetypes": [
+    {
+      "archetype_id": "pragmatic_evaluators",
+      "label": "Pragmatic Evaluators",
+      "weight": 0.45,
+      "is_long_tail": false,
+      "traits": {
+        "risk_appetite": "moderate",
+        "priority": "ROI and auditability"
+      },
+      "prior_tendencies": {
+        "pilot_guarded": 0.68,
+        "adopt_now": 0.18,
+        "local_only": 0.12,
+        "reject_ai": 0.02
+      },
+      "sample_rationales": [
+        "Start with a sandboxed pilot and audit logs before broader rollout."
+      ]
+    },
+    {
+      "archetype_id": "velocity_optimists",
+      "label": "Velocity-First Builders",
+      "weight": 0.25,
+      "is_long_tail": false,
+      "traits": {
+        "risk_appetite": "high",
+        "priority": "shipping speed"
+      },
+      "prior_tendencies": {
+        "adopt_now": 0.66,
+        "pilot_guarded": 0.28,
+        "local_only": 0.04,
+        "reject_ai": 0.02
+      },
+      "sample_rationales": [
+        "Deploy quickly and iterate on guardrails with live feedback."
+      ]
+    },
+    {
+      "archetype_id": "sovereign_infra",
+      "label": "Local-First / Air-Gapped Architects",
+      "weight": 0.2,
+      "is_long_tail": true,
+      "traits": {
+        "risk_appetite": "low",
+        "priority": "data sovereignty"
+      },
+      "prior_tendencies": {
+        "local_only": 0.74,
+        "pilot_guarded": 0.16,
+        "reject_ai": 0.08,
+        "adopt_now": 0.02
+      },
+      "sample_rationales": [
+        "Proprietary behavioral data must stay local; self-hosted models only."
+      ]
+    },
+    {
+      "archetype_id": "compliance_skeptics",
+      "label": "Strict Regulatory Skeptics",
+      "weight": 0.1,
+      "is_long_tail": true,
+      "traits": {
+        "risk_appetite": "minimal",
+        "priority": "zero liability"
+      },
+      "prior_tendencies": {
+        "reject_ai": 0.65,
+        "local_only": 0.25,
+        "pilot_guarded": 0.08,
+        "adopt_now": 0.02
+      },
+      "sample_rationales": [
+        "Legal and IP exposure currently outweighs automation gains."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://anthromesh.dev/schemas/policy_rule.schema.json",
+  "title": "PolicyRule",
+  "description": "Deterministic boundary and consent rule evaluated prior to any LLM inference.",
+  "type": "object",
+  "required": [
+    "rule_id",
+    "name",
+    "effect",
+    "domains"
+  ],
+  "properties": {
+    "rule_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "effect": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "deny",
+        "escalate"
+      ]
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_callers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocked_keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "max_risk_tier": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "max_monetary_value": {
+      "type": "number"
+    },
+    "priority": {
+      "type": "integer",
+      "default": 100
+    }
+  }
+}

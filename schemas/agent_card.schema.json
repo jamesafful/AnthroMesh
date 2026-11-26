@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://anthromesh.dev/schemas/agent_card.schema.json",
+  "title": "A2AAgentCard",
+  "description": "A2A v1.0 discovery card published at /.well-known/agent.json.",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "protocolVersion",
+    "url",
+    "capabilities",
+    "skills"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "protocolVersion": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "object"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

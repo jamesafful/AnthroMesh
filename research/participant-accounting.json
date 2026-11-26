@@ -1,0 +1,110 @@
+{
+  "as_of_local_date": "2026-11-26",
+  "timezone": "America/New_York",
+  "source_revision": "f883165a3026fde855dfd448e0cd16443ab257b6",
+  "scope": "Public accounting: aggregate counts, split derivations, and ordered membership hashes.",
+  "hash_recipe": "SHA-256 of UTF-8 Python json.dumps(tuple(args)) with default separators and ensure_ascii",
+  "split_seeds": [
+    {
+      "seed": "anthromesh-public-v1",
+      "inputs": "seed, participant, PID",
+      "roles": "60 original evaluation, then 32 original calibration"
+    },
+    {
+      "seed": "anthromesh-public-validation-v2",
+      "inputs": "seed, PID on remainder",
+      "roles": "100 selection, 100 calibration, 200 evaluation, 1566 reference"
+    },
+    {
+      "seed": "anthromesh-repeated-memory-v1",
+      "inputs": "seed, PID within 1566 reference",
+      "roles": "200 development, 200 evaluation, 1166 reserved"
+    }
+  ],
+  "usage_dates": {
+    "original_benchmark": "2026-11-23",
+    "cross_question_followup": "2026-11-23/24 local session; original evidence does not log a standalone date per phase",
+    "memory_test_and_controls": "recorded by 2026-11-24; exact phase timestamps unavailable",
+    "time_preference_check": "recorded by 2026-11-24"
+  },
+  "history_note": "Earlier-wave responses from people outside model/holdout samples were used as population reference, including all reserved participants. The reserve status applies to the original Wave 4 answers.",
+  "outcome_roles": {
+    "original_evaluation": "closed; reused for audit and exploratory local language model",
+    "original_calibration": "used",
+    "cross_question_selection_and_time_preference": "used Wave 4 for model selection; time preference reused only this group and only the early 60 choice columns",
+    "cross_question_calibration": "used",
+    "cross_question_closed_holdout": "closed; no retuning",
+    "memory_development": "used",
+    "memory_closed_holdout": "closed; post hoc controls computed on same cases",
+    "memory_replication_reserve": "Closed after one registered Wave 4 replication on 2026-11-26. No retuning."
+  },
+  "mega_study_target_status": "No target scoring recorded; freeze and register separate outcome namespace before use.",
+  "groups": {
+    "original_evaluation": {
+      "count": 60,
+      "ordered_sha256": "0ca78ee2867f54300677841e1be0c64d9aeaa2b9cd14bd5748022da392526c4a"
+    },
+    "original_calibration": {
+      "count": 32,
+      "ordered_sha256": "682434ac36a5fd086882c9f6c4fa236df5207ecc0b018936a62ed2665a9abe2e"
+    },
+    "cross_question_selection_and_time_preference": {
+      "count": 100,
+      "ordered_sha256": "e3a7717d8e185ed16f11e054e93d0d8a711c558d8ff469e5e3e30eb0a85aa5a3"
+    },
+    "cross_question_calibration": {
+      "count": 100,
+      "ordered_sha256": "c4b044dd8c817d335d90595a308f5f4730feb6fd001402f4db2356bd50aabf89"
+    },
+    "cross_question_closed_holdout": {
+      "count": 200,
+      "ordered_sha256": "5a00987ca3842680a409a6e30c1f92edf29c517d94292ff009ccd7b90ee14d4d"
+    },
+    "memory_development": {
+      "count": 200,
+      "ordered_sha256": "f699233ac6df8ef23cba1c23e1f75d58b78f81dd24e816ceef683efcc79a4f95"
+    },
+    "memory_closed_holdout": {
+      "count": 200,
+      "ordered_sha256": "db64ae8f6c97c5f7686a84782d6f6478daf343a9a0a566181584d30bc4240bc2"
+    },
+    "memory_replication_reserve": {
+      "count": 1166,
+      "ordered_sha256": "e1ed94f24aafe179f8e104d5e999429088c37f9aecc3c23c8cc67e5bbfc66603"
+    }
+  },
+  "replication_freeze": {
+    "status": "local draft; registration pending",
+    "protocol": "anthromesh-repeated-memory-v1",
+    "original_plan_sha256": "406340c87089ff5367c5e7893fe730c566c1a877fbcbcc3f287e3994cdc55c7d",
+    "items": [
+      "QID9_37",
+      "QID9_12",
+      "QID9_16",
+      "QID9_3",
+      "QID9_13",
+      "QID9_33",
+      "QID9_4",
+      "QID9_19",
+      "QID9_35",
+      "QID9_5",
+      "QID9_21",
+      "QID9_11",
+      "QID9_22",
+      "QID9_27",
+      "QID167",
+      "QID9_18",
+      "QID9_38",
+      "QID9_1"
+    ],
+    "minimum_coverage": 0.2,
+    "minimum_paired_gain": 0.05,
+    "minimum_interval_lower_bound": "strictly positive",
+    "bootstrap_draws": 5000
+  },
+  "memory_replication_completed": {
+    "date": "2026-11-26",
+    "doi": "10.5281/zenodo.24560763",
+    "participants": 1166
+  }
+}

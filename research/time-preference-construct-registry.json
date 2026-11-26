@@ -1,0 +1,20 @@
+{
+  "construct_id": "economic.dated_monetary_choice.v1",
+  "status": "estimator_validation_only",
+  "runtime_ranking_eligible": false,
+  "may_grant_authority": false,
+  "may_create_owner_boundary": false,
+  "scope": "Twin-2K-500 matched monetary choice lists, development participants only",
+  "decision": "Stop: cross-schedule rank agreement missed the frozen minimum.",
+  "evidence": {
+    "protocol_sha256": "87d346c588f18d17f724c23cafa32619d9f51ea4e5baaa62b411c008399c2019",
+    "development_ids_sha256": "e3a7717d8e185ed16f11e054e93d0d8a711c558d8ff469e5e3e30eb0a85aa5a3",
+    "result": "time-preference-feasibility-results.json"
+  },
+  "limitations": [
+    "No independent transfer family",
+    "No temporal retest",
+    "Task order and choice-contingent payouts unverified",
+    "Noise and utility specification assumed"
+  ]
+}
