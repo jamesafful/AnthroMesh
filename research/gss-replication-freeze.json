@@ -1,0 +1,40 @@
+{
+  "status": "frozen before any target outcome scoring; publish on Zenodo before execution",
+  "dataset": "NORC GSS 2006 and 2008 panel public Stata releases",
+  "archive_sha256": {
+    "panel2006.zip": "e20538164d5082a266924e0fe697d08c81114eff4c057cafc2c83fc6c508b2f3",
+    "panel2008.zip": "13fb3ca4f1a30ef923fd08ca1c6144c35b45101323161e6339af7dd75eefeaf3"
+  },
+  "spending_items": [
+    "nataid",
+    "natarms",
+    "natchld",
+    "natcity",
+    "natcrime",
+    "natdrug",
+    "nateduc",
+    "natenvir",
+    "natfare",
+    "natheal",
+    "natmass",
+    "natpark",
+    "natroad",
+    "natsci",
+    "natsoc",
+    "natspac"
+  ],
+  "unrelated_items": [
+    "happy",
+    "fair",
+    "helpful",
+    "trust"
+  ],
+  "tendency_target": "natenvir",
+  "seed": 20261126,
+  "min_complete": 100,
+  "eligibility": "All frozen replicated core battery items with at least 100 valid 2006 early responses and 100 complete 2008 three-wave rows. Codes 1–3 only. Every item is reported or listed as excluded.",
+  "memory": "Two agreeing earlier observations, compared with 2006 early-wave majority. Participant mean paired gain across approved items. Pass at least five scored items, +5 points, and positive participant bootstrap lower bound. Report tiers of 2006 baseline majority share.",
+  "tendency": "One penalized intercept, 2006 early fitted item priors, 2008 early observations, 2008 third-wave target, held-out environment item. At least eight other spending responses and four unrelated responses. Compare with prior, shuffled and unrelated response-style control on matched people. Pass +3 points, positive lower confidence bound, lower log loss, and positive paired intervals against both controls.",
+  "scope": "Unweighted panel respondent pools. Timing and authentic runtime action outcomes are separate. Exploratory 2010 result selected one environment spending item from available spending questions with no preregistration.",
+  "execution": "Publish this file and gss_frozen_replication.py with a version-specific Zenodo DOI before running once."
+}

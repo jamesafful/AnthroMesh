@@ -99,7 +99,9 @@ and the [Twin-2K-500 data release](https://huggingface.co/datasets/LLM-Digital-T
 ## Independent non-pricing survey evidence
 
 An exploratory replay on the separate 2010 GSS three-wave panel used
-the environment-spending question as the target. Among 302 evaluation
+the environment-spending question as the target. It was an exploratory
+choice from the available spending battery. No preregistered item-selection
+rule supported that single-item analysis. Among 302 evaluation
 participants answering all three waves, 200 had two agreeing prior
 answers. Copying those answers reached **77.5% vs. 69.0%** for an
 independent participant majority on the same cases, at **66.2%** coverage.
@@ -121,6 +123,41 @@ unweighted panel item, and these results are exploratory. Reproduce with
 the [non-pricing replay script](../examples/gss_non_pricing_replay.py)
 and [NORC's public panel release](https://gss.norc.org/get-the-data/stata.html).
 See the [aggregate results](gss-non-pricing-results.json).
+
+## Preregistered independent GSS replication
+
+The [frozen replication](https://doi.org/10.5281/zenodo.24562917) used early
+2006 panel responses for population priors and the separate 2008 panel for
+evaluation. All 20 prespecified spending and social-attitude items passed
+the minimum-case requirement. The participant-mean gain of two-answer
+memory over matched majority was **+19.5 percentage points** (95% interval
+**+18.2 to +20.9**). All 20 point estimates were positive, from about +1 to
++43 points. The per-item intervals and coverage are in the [full results](gss-registered-replication-results.json).
+The following are descriptive, equally weighted item gains by 2006 baseline
+majority share.
+
+| Baseline majority share | Items | Mean gain |
+| --- | ---: | ---: |
+| under 70 | 18 | +21.4 pp |
+| 70 to under 90 | 2 | +5.2 pp |
+| 90 or higher | 0 | — |
+
+On the reserved environmental-spending target, the one-parameter personal
+intercept reached **61.8%** versus **56.1%** for the population prior on 408
+matched people. The +5.6 point gain had a 95% interval of +2.7 to +8.8.
+The same scoring rule fed only unrelated response history reached 56.4%.
+Shuffled identity reached 55.9%. The within-family model beat both controls
+with positive bootstrap lower bounds and improved log loss from 0.724 to
+0.669. That supports transfer within this spending battery, with a
+response-style check limited to the selected unrelated items.
+
+The GSS two-answer analysis intentionally preserves the actual survey wave
+dates. These waves are years apart and cannot yield two prior records inside
+the runtime's 90-day window. The Twin-2K-500 replication supplies only one
+earlier response per repeated survey item. Those datasets therefore supply
+no qualifying estimates of live fast-path accuracy. Runtime envelopes leave
+accuracy and interval fields unset. The earlier Twin-2K-500 non-pricing
+item had a 94.5% matched majority, leaving only 5.5 points of possible gain.
 
 ## Operational scope
 

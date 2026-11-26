@@ -21,3 +21,11 @@ The tests exercise replay, action scope and lifetime, concurrent challenge
 consumption, structured-context changes, and database tenant boundaries.
 These are internal checks. Independent review and actual relying-party
 deployment constraints remain separate verification tasks.
+
+## Independent review requested
+
+We welcome review of the public delegation and verifier implementation.
+The scope includes action and audience binding, concurrent challenge
+consumption, revocation at use, expiry, and tenant boundaries. Use GitHub
+Issues to express interest or report integration problems. Send suspected
+vulnerabilities through the private reporting channel above.

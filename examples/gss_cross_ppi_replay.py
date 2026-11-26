@@ -42,10 +42,10 @@ def predict(endpoint, earlier):
     return choice
 
 
-def evaluate(archive, endpoint):
+def evaluate(archive, endpoint, *, classical=False):
     if hashlib.sha256(archive.read_bytes()).hexdigest() != ARCHIVE:
         raise ValueError("Unexpected GSS archive revision.")
-    columns = ["trust_1a", "trust_1b", "trust_2"]
+    columns = ["trust_1a", "trust_1b", "trust_2", "age_1a", "age_1b"]
     with TemporaryDirectory() as tmp, ZipFile(archive) as z:
         path = Path(z.extract("gss2020panel_r1a.dta", tmp))
         data = pd.read_stata(path, columns=columns, convert_categoricals=False)
@@ -54,14 +54,37 @@ def evaluate(archive, endpoint):
     valid = np.isin(history, [1, 2, 3]) & np.isin(target, [1, 2])
     outcomes = np.where(target[valid] == 1, "A", "B")
     earlier = history[valid].astype(int)
-    choices = {value: predict(endpoint, value) for value in sorted(set(earlier.tolist()))}
-    forecasts = [choices[value] for value in earlier]
+    model = MODEL
+    diagnostics = {}
+    if classical:
+        model = "smoothed categorical trust predictor"
+        # Deterministic held-out participants. Fit sees only the first half.
+        order = np.random.default_rng(SEED).permutation(len(outcomes))
+        fit, test = np.array_split(order, 2)
+        b_wave = np.isin(b, [1, 2, 3])
+        age = np.where(b_wave, data["age_1b"].to_numpy(), data["age_1a"].to_numpy())[valid]
+        age_band = np.where(np.isfinite(age) & (age >= 18) & (age <= 89), age >= 50, -1)
+        wave = b_wave[valid]
+        y = outcomes == "A"
+        probabilities = []
+        for i in test:
+            matching = fit[earlier[fit] == earlier[i]]
+            parent = (float(y[matching].sum()) + .5) / (len(matching) + 1)
+            cohort = matching[(age_band[matching] == age_band[i]) & (wave[matching] == wave[i])]
+            probabilities.append((float(y[cohort].sum()) + 10 * parent) / (len(cohort) + 10))
+        outcomes = outcomes[test]
+        diagnostics["fit_participants"] = len(fit)
+        diagnostics["brier"] = float(np.mean((np.array(probabilities) - (outcomes == "A")) ** 2))
+    else:
+        choices = {value: predict(endpoint, value) for value in sorted(set(earlier.tolist()))}
+        probabilities = [float(choices[value] == "A") for value in earlier]
+        diagnostics["forecast_by_earlier_response_code"] = choices
     n = len(outcomes)
     budget = max(10, round(.15 * n))
     if n < 100:
         raise ValueError("Insufficient eligible public panel responses.")
-    rows = [dict(unit=str(i), group="panel", probabilities={"A": float(c == "A"), "B": float(c == "B")})
-            for i, c in enumerate(forecasts)]
+    rows = [dict(unit=str(i), group="panel", probabilities={"A": p, "B": 1 - p})
+            for i, p in enumerate(probabilities)]
     truth = {category: float(np.mean(outcomes == category)) for category in ("A", "B")}
     draws = np.random.default_rng(SEED)
     metrics = {"cross_ppi": [], "human_only": []}
@@ -69,7 +92,7 @@ def evaluate(archive, endpoint):
         indices = draws.permutation(n)
         anchors = [dict(rows[i], outcome=str(outcomes[i])) for i in indices[:budget]]
         study = CategoricalAnchorStudy(
-            outcome_id="GSS trust_2", model_revision=MODEL, method="cross_ppi",
+            outcome_id="GSS trust_2", model_revision=model, method="cross_ppi",
             sampling_design="exploratory finite-pool sampling without replacement",
             categories=["A", "B"], anchors=anchors, minimum_subgroup_size=n + 1,
             predictions=[rows[i] for i in indices[budget:]],
@@ -86,8 +109,8 @@ def evaluate(archive, endpoint):
     return {
         "dataset": "NORC GSS 2016-2020 Panel Release 1a", "archive_sha256": ARCHIVE,
         "outcome": "trust_2 coded responses 1 and 2", "nominal_joint_coverage": .95,
-        "predictor": MODEL, "seed": SEED, "repeats": REPEATS, "eligible": n,
-        "labels_per_draw": budget, "forecast_by_earlier_response_code": choices,
+        "predictor": model, "seed": SEED, "repeats": REPEATS, "eligible": n,
+        "labels_per_draw": budget, **diagnostics,
         "two_record_eligible": int((np.isin(a, [1, 2, 3]) & np.isin(b, [1, 2, 3]) & valid).sum()),
         "scope": "complete-case finite respondent pool; no survey population weighting",
         "passes": summary["cross_ppi"]["joint_coverage"] >= .95
@@ -100,6 +123,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("archive", type=Path)
     parser.add_argument("--endpoint", default="http://127.0.0.1:18192/v1/chat/completions")
+    parser.add_argument("--classical", action="store_true")
     args = parser.parse_args()
-    print(json.dumps(evaluate(args.archive, args.endpoint), indent=2))
+    print(json.dumps(evaluate(args.archive, args.endpoint, classical=args.classical), indent=2))
 

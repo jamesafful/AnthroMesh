@@ -6,6 +6,20 @@ AnthroMesh lets agents consult recorded human preferences with consent and
 provenance, ask the owner to resolve uncertain cases, and present auditable
 delegation for an exact proposed action. Predictive fidelity is experimental.
 
+## Known limitations
+
+- Exact memory requires two agreeing records from the past 90 days.
+  The survey benchmarks measure repeat agreement. Live fast-path accuracy,
+  false approvals, and owner burden remain unmeasured.
+- Personal tendencies have shown signal in specific survey families.
+  General transfer to genuinely new questions remains unverified.
+- Cross-fitted calibration failed to reduce interval width on both real-LLM
+  replays at equal human label cost. Use human-only estimates for these settings.
+- The delegation controls have internal test coverage. Independent review
+  and complete protocol certification remain open. Report vulnerabilities
+  through the [security policy](SECURITY.md).
+
+
 1. **Personal Decision Twin (`anthromesh.twin`)** — Captures structured `(context, options_considered, chosen_action, rejected_options, rationale)` decision logs in a local-first SQLite Behavioral Vault, enforces deterministic boundary/consent policies, and supports owner escalation when the recorded preference is insufficient.
 2. **Research Cohort Oracle (`anthromesh.cohort`)** — Evaluates stratified forecasts against empirical distributions and population priors.
 3. **Pluggable Local + Cloud Inference Adapters (`anthromesh.adapters`)** — Unified adapter interface supporting **Ollama**, **vLLM**, **OpenAI**, **Anthropic**, **Google Gemini**, and a zero-dependency **Heuristic** adapter for offline development and CI.
@@ -397,6 +411,17 @@ categories and subgroups. Marginal corrected estimates are left unclipped and
 may not compose a valid probability vector. Use the binary wrapper when the
 conservative bounded method is required. No finite-sample efficiency guarantee
 is made for the adaptive method.
+
+Categorical studies default to human-only estimation. To draw anchors,
+freeze the sampling frame and seed before viewing any label and run
+`anthromesh draw-cohort-anchors ids.json --count 60 --seed 42`. Preserve all
+draws and report nonresponse. For deployment with model assistance, use
+`guarded_cross_ppi` with the frozen `anchor_seed` and
+`anchor_model_revision`. The guard checks the draw, revision, total
+variation between mean forecasts, anchor count, and interval widths.
+An invalid draw yields descriptive anchor proportions without confidence
+intervals. Passing these checks alone does not establish representativeness
+or absence of drift. Independent validation of the forecast is still needed.
 
 Set `method` to `cross_ppi` to use every human label as an anchor and
 fit the category-specific calibration weights out of fold. Omit `tuning`.

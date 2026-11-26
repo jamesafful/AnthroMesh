@@ -1,7 +1,7 @@
 import pytest
 
 from anthromesh.adapters.heuristic import HeuristicAdapter
-from anthromesh.cohort.categorical_anchor import CategoricalAnchorStudy, analyze_categories
+from anthromesh.cohort.categorical_anchor import CategoricalAnchorStudy, analyze_categories, draw_anchor_units
 from anthromesh.cohort.human_anchor import AnchorRow, AnchorStudy, ForecastRow, analyze_anchors
 from anthromesh.models import CandidateOption, DecisionLog, GateAction, QueryContext
 from anthromesh.twin.engine import PersonalDecisionTwin
@@ -85,3 +85,32 @@ def test_cross_ppi_uses_equal_label_budget_and_stable_folds():
     payload["anchors"] = payload["anchors"][:9]
     with pytest.raises(ValueError, match="twice as many"):
         CategoricalAnchorStudy.model_validate(payload)
+
+def test_guard_checks_random_selection_and_forecast_drift():
+    frame = [str(i) for i in range(60)]
+    selected = set(draw_anchor_units(frame, 20, 42))
+    assert selected == set(draw_anchor_units(frame[::-1], 20, 42))
+
+    def row(unit, probability):
+        return dict(unit=unit, group="all", probabilities={"yes": probability, "no": 1 - probability})
+
+    payload = dict(
+        outcome_id="approval", model_revision="stable", anchor_model_revision="stable",
+        sampling_design="frozen test frame", categories=["yes", "no"], anchor_seed=42,
+        anchors=[dict(row(i, .2), outcome="yes" if int(i) % 2 else "no") for i in sorted(selected)],
+        predictions=[row(i, .9) for i in frame if i not in selected],
+    )
+    default = analyze_categories(CategoricalAnchorStudy.model_validate(payload))
+    assert default["method"] == "human_only"
+    payload["method"] = "guarded_cross_ppi"
+    drift = analyze_categories(CategoricalAnchorStudy.model_validate(payload))
+    assert drift["guard"]["selection_verified"]
+    assert drift["guard"]["fallback_reasons"] == ["forecast_shift"]
+    assert drift["method"] == "human_only"
+    assert drift["population"]["marginals"]["yes"]["interval"] is not None
+
+    payload["anchor_seed"] = None
+    invalid = analyze_categories(CategoricalAnchorStudy.model_validate(payload))
+    assert "anchor_draw_mismatch" in invalid["guard"]["fallback_reasons"]
+    assert invalid["confidence_level"] is None
+    assert invalid["population"]["marginals"]["yes"]["interval"] is None

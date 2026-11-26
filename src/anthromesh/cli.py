@@ -22,7 +22,7 @@ from anthromesh.capture.workflows import calendar_responses, github_reviews
 from anthromesh.cohort.clustering import build_clustered_profile
 from anthromesh.cohort.twin_priors import TwinCohortConsent, grant_cohort_consent, revoke_cohort_consent
 from anthromesh.cohort.ingest import build_empirical_profile, read_survey
-from anthromesh.cohort.categorical_anchor import CategoricalAnchorStudy, analyze_categories
+from anthromesh.cohort.categorical_anchor import CategoricalAnchorStudy, analyze_categories, draw_anchor_units
 from anthromesh.cohort.human_anchor import AnchorStudy, analyze_anchors
 from anthromesh.cohort.oracle import ResearchCohortOracle
 from anthromesh.config import AnthroMeshConfig
@@ -201,6 +201,11 @@ def main(argv: list[str] | None = None) -> int:
 
     download_twin = sub.add_parser("download-public-twin", help="Download the pinned public Twin-2K-500 release.")
     download_twin.add_argument("folder", type=Path)
+    sample = sub.add_parser("draw-cohort-anchors", help="Draw anchor IDs from a frozen unlabeled sampling frame.")
+    sample.add_argument("frame", type=Path, help="JSON array of unique unit ID strings.")
+    sample.add_argument("--count", type=int, required=True)
+    sample.add_argument("--seed", type=int, required=True)
+
     anchors = sub.add_parser("calibrate-cohort", help="Estimate a binary proportion using independent human anchors.")
     anchors.add_argument("study", type=Path)
     public_twin = sub.add_parser("evaluate-public-twin", help="Evaluate the public Twin-2K-500 wave split.")
@@ -534,6 +539,13 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "validate-public-twin":
         print(json.dumps(run_public_validation(args.folder, args.original_report, args.frozen, phase=args.phase), indent=2))
+        return 0
+
+    if args.command == "draw-cohort-anchors":
+        units = json.loads(args.frame.read_text(encoding="utf-8"))
+        if not isinstance(units, list) or not all(isinstance(unit, str) for unit in units):
+            raise ValueError("The sampling frame must be an array of string unit IDs.")
+        print(json.dumps(draw_anchor_units(units, args.count, args.seed), indent=2))
         return 0
 
     if args.command == "calibrate-cohort":
