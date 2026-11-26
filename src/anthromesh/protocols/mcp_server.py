@@ -9,6 +9,7 @@ from contextlib import contextmanager
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
 
+from anthromesh import __version__
 from anthromesh.cohort.oracle import ResearchCohortOracle
 from anthromesh.judgment.monitor import PredictionMonitor
 from anthromesh.models import (
@@ -29,7 +30,7 @@ MCP_PROTOCOL_VERSION = "2026-07-28"
 LEGACY_PROTOCOL_VERSION = "2025-11-25"
 PROTOCOL_META_KEY = "io.modelcontextprotocol/protocolVersion"
 CAPABILITIES_META_KEY = "io.modelcontextprotocol/clientCapabilities"
-SERVER_INFO = {"name": "anthromesh-mcp", "version": "0.1.0"}
+SERVER_INFO = {"name": "anthromesh-mcp", "version": __version__}
 CACHE_HINT = {"ttlMs": 0, "cacheScope": "private"}
 OWNER_TOOLS = {"twin_record_decision", "twin_resolve_escalation", "vault_audit_log"}
 

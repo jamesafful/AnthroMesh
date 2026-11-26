@@ -6,6 +6,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any
 
+from anthromesh import __version__
 from anthromesh.cohort.oracle import ResearchCohortOracle
 from anthromesh.models import (
     CandidateOption,
@@ -27,7 +28,7 @@ def build_agent_card(base_url: str = "http://127.0.0.1:8082", *, modern: bool = 
             "Recorded human preferences and experimental cohort evaluation "
             "with provenance and owner escalation."
         ),
-        "version": "0.1.0",
+        "version": __version__,
         "protocolVersion": "1.0",
         "url": base_url.rstrip("/"),
         "capabilities": {
@@ -349,7 +350,7 @@ class A2AService:
     def create_fastapi_app(self) -> Any:
         from fastapi import FastAPI, Header, HTTPException  # type: ignore
 
-        app = FastAPI(title="AnthroMesh A2A Server", version="0.1.0")
+        app = FastAPI(title="AnthroMesh A2A Server", version=__version__)
 
         @app.get("/.well-known/agent-card.json")
         def modern_agent_card() -> dict[str, Any]:

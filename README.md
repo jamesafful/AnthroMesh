@@ -1,5 +1,7 @@
 # AnthroMesh
 
+<!-- mcp-name: io.github.jamesafful/anthromesh -->
+
 **Preference memory, owner escalation, and verifiable delegation for AI agents.**
 
 AnthroMesh lets agents consult recorded human preferences with consent and
