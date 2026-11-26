@@ -79,14 +79,48 @@ width 0.268 versus 0.278 at the same label budget. The proxy result
 illustrates the role of predictiveness. With publisher LLM predictions,
 joint coverage dropped to 45.6% under selected anchors and 78.3% under
 forecast drift. These deliberate assumption violations establish no
-deployment guarantee. Keep human-only estimation as the reference until a
-second survey clears both the coverage and width criteria.
+deployment guarantee.
+
+An exploratory second survey used a public GSS panel trust item with 1,221
+eligible respondents and 183 labels per draw. Local Qwen2.5-0.5B returned
+the same choice for all three prior-answer profiles. Cross-PPI attained
+99.0% coverage with width 0.163 versus 98.3% and 0.160 for human-only.
+Both real-LLM comparisons missed the equal-budget width target. Keep
+human-only estimation as the reference for these settings. This GSS pool
+contains zero eligible respondents with two earlier answers to the trust
+item. See the [GSS replay](cross-ppi-gss-results.json).
 
 Reproduce from the pinned source files with
 `python examples/survey_anchor_replay.py . DATASET --published-llm`.
 The aggregate output is in [the LLM replay results](cross-ppi-published-llm-results.json).
 See [Cross-Prediction-Powered Inference](https://doi.org/10.1073/pnas.2322083121)
 and the [Twin-2K-500 data release](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500).
+
+## Independent non-pricing survey evidence
+
+An exploratory replay on the separate 2010 GSS three-wave panel used
+the environment-spending question as the target. Among 302 evaluation
+participants answering all three waves, 200 had two agreeing prior
+answers. Copying those answers reached **77.5% vs. 69.0%** for an
+independent participant majority on the same cases, at **66.2%** coverage.
+The gain was +8.5 percentage points (95% participant bootstrap interval
++1.5 to +16.0).
+
+In a separate binary transfer comparison, the personal intercept used
+prior responses about other spending categories and excluded the target
+from the person's history. On 310 respondents it achieved **66.8% vs.
+59.7%** for the population prior and **59.7%** for shuffled identities.
+Log loss was 0.618 versus 0.674 for the population prior. The +7.1 point
+gain had a 95% interval of +2.3 to +12.3. The original pricing pipeline's
+eight-history minimum and intercept penalty were retained. The survey
+target and category coding were specific to GSS.
+
+These observations span years, so the runtime's recency and context
+requirements were outside the survey replay. The outcome is one
+unweighted panel item, and these results are exploratory. Reproduce with
+the [non-pricing replay script](../examples/gss_non_pricing_replay.py)
+and [NORC's public panel release](https://gss.norc.org/get-the-data/stata.html).
+See the [aggregate results](gss-non-pricing-results.json).
 
 ## Operational scope
 

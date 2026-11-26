@@ -1,0 +1,62 @@
+{
+  "dataset": "GSS 2010 panel, release 6",
+  "archive_sha256": "ffe09fa4edaae23a169b0737a982df28fb6acc0ec19e15762a0019f5de3abbd7",
+  "scope": "exploratory unweighted panel and survey response comparison",
+  "runtime_validation": false,
+  "seed": 20261126,
+  "target": "natenvir",
+  "history_items": [
+    "nataid",
+    "natarms",
+    "natchld",
+    "natcity",
+    "natcrime",
+    "natdrug",
+    "nateduc",
+    "natfare",
+    "natheal",
+    "natmass",
+    "natpark",
+    "natroad",
+    "natsci",
+    "natsoc",
+    "natspac"
+  ],
+  "fit_people": 1022,
+  "exact_repeat_two_answers": {
+    "n": 200,
+    "accuracy": 0.775,
+    "majority_accuracy": 0.69,
+    "accuracy_gain": 0.085,
+    "gain_ci95": [
+      0.015,
+      0.16
+    ],
+    "coverage": 0.6622516556291391,
+    "qualified_pairs": 302
+  },
+  "transfer": {
+    "population": {
+      "accuracy": 0.5967741935483871,
+      "log_loss": 0.6743316633153696
+    },
+    "personal_intercept": {
+      "accuracy": 0.667741935483871,
+      "log_loss": 0.6184680321589687
+    },
+    "shuffled_identity": {
+      "accuracy": 0.5967741935483871,
+      "log_loss": 0.692691876354732
+    },
+    "paired_accuracy_gain": {
+      "n": 310,
+      "accuracy": 0.667741935483871,
+      "majority_accuracy": 0.5967741935483871,
+      "accuracy_gain": 0.07096774193548387,
+      "gain_ci95": [
+        0.02258064516129032,
+        0.12258064516129032
+      ]
+    }
+  }
+}

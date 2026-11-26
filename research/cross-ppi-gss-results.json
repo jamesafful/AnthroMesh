@@ -1,0 +1,29 @@
+{
+  "dataset": "NORC GSS 2016-2020 Panel Release 1a",
+  "archive_sha256": "d1ae45c793a4fc3f8bbf4af65b11762c8d814106cecd11f244a2831d2272dc6d",
+  "outcome": "trust_2 coded responses 1 and 2",
+  "nominal_joint_coverage": 0.95,
+  "predictor": "qwen2.5-0.5b-instruct-q4_k_m",
+  "seed": 20261126,
+  "repeats": 300,
+  "eligible": 1221,
+  "labels_per_draw": 183,
+  "forecast_by_earlier_response_code": {
+    "1": "B",
+    "2": "B",
+    "3": "B"
+  },
+  "two_record_eligible": 0,
+  "scope": "complete-case finite respondent pool; no survey population weighting",
+  "passes": false,
+  "summary": {
+    "cross_ppi": {
+      "joint_coverage": 0.99,
+      "mean_marginal_width": 0.16250083398761142
+    },
+    "human_only": {
+      "joint_coverage": 0.9833333333333333,
+      "mean_marginal_width": 0.15997377691718512
+    }
+  }
+}
