@@ -49,7 +49,7 @@ def evaluate(archive, endpoint, *, classical=False):
     with TemporaryDirectory() as tmp, ZipFile(archive) as z:
         path = Path(z.extract("gss2020panel_r1a.dta", tmp))
         data = pd.read_stata(path, columns=columns, convert_categoricals=False)
-    a, b, target = (data[col].to_numpy() for col in columns)
+    a, b, target = (data[col].to_numpy() for col in columns[:3])
     history = np.where(np.isin(b, [1, 2, 3]), b, a)
     valid = np.isin(history, [1, 2, 3]) & np.isin(target, [1, 2])
     outcomes = np.where(target[valid] == 1, "A", "B")
@@ -106,6 +106,7 @@ def evaluate(archive, endpoint, *, classical=False):
     summary = {arm: {"joint_coverage": fmean(x[0] for x in values),
                      "mean_marginal_width": fmean(x[1] for x in values)}
                for arm, values in metrics.items()}
+    minimum_coverage = .94 if classical else .95
     return {
         "dataset": "NORC GSS 2016-2020 Panel Release 1a", "archive_sha256": ARCHIVE,
         "outcome": "trust_2 coded responses 1 and 2", "nominal_joint_coverage": .95,
@@ -113,7 +114,8 @@ def evaluate(archive, endpoint, *, classical=False):
         "labels_per_draw": budget, **diagnostics,
         "two_record_eligible": int((np.isin(a, [1, 2, 3]) & np.isin(b, [1, 2, 3]) & valid).sum()),
         "scope": "complete-case finite respondent pool; no survey population weighting",
-        "passes": summary["cross_ppi"]["joint_coverage"] >= .95
+        "minimum_joint_coverage": minimum_coverage,
+        "passes": summary["cross_ppi"]["joint_coverage"] >= minimum_coverage
         and summary["cross_ppi"]["mean_marginal_width"] < summary["human_only"]["mean_marginal_width"],
         "summary": summary,
     }

@@ -90,6 +90,19 @@ human-only estimation as the reference for these settings. This GSS pool
 contains zero eligible respondents with two earlier answers to the trust
 item. See the [GSS replay](cross-ppi-gss-results.json).
 
+A timestamped reanalysis on the same GSS trust item used a probabilistic
+classical model conditioned on prior trust, baseline age band, and survey
+cohort. It was fitted on 611 separate labeled participants and evaluated
+on 610 held-out participants, with 92 evaluation labels per draw. Cross-PPI
+achieved **99.0% coverage and 0.203 mean width** versus **98.3% and 0.220**
+for human-only. Brier score was 0.178. The widths were about 7.7% narrower
+at equal evaluation-label budget. Model training labels are an additional
+cost if an existing trained predictor is unavailable. The item and data
+source were previously opened, so this is a fixed reanalysis rather than
+an untouched validation. See the [plan](gss-probabilistic-reanalysis-plan.md)
+and [results](gss-probabilistic-reanalysis-results.json).
+
+
 Reproduce from the pinned source files with
 `python examples/survey_anchor_replay.py . DATASET --published-llm`.
 The aggregate output is in [the LLM replay results](cross-ppi-published-llm-results.json).
@@ -151,8 +164,8 @@ with positive bootstrap lower bounds and improved log loss from 0.724 to
 0.669. That supports transfer within this spending battery, with a
 response-style check limited to the selected unrelated items.
 
-The GSS two-answer analysis intentionally preserves the actual survey wave
-dates. These waves are years apart and cannot yield two prior records inside
+The GSS survey schedules determine whether the 90-day rule is feasible.
+These waves are years apart and cannot yield two prior records inside
 the runtime's 90-day window. The Twin-2K-500 replication supplies only one
 earlier response per repeated survey item. Those datasets therefore supply
 no qualifying estimates of live fast-path accuracy. Runtime envelopes leave

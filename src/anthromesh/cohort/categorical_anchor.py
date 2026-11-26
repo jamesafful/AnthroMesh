@@ -38,6 +38,13 @@ class CategoricalAnchorStudy(BaseModel):
     alpha: float = Field(default=.05, gt=0, lt=1)
     minimum_subgroup_size: int = Field(default=10, ge=2)
 
+    @model_validator(mode="before")
+    @classmethod
+    def preserve_implicit_tuning(cls, data):
+        if isinstance(data, dict) and "method" not in data and data.get("tuning"):
+            return {**data, "method": "power_tuned"}
+        return data
+
     @model_validator(mode="after")
     def check_samples(self):
         if self.method not in {"human_only", "power_tuned", "fixed", "cross_ppi", "guarded_cross_ppi"}:

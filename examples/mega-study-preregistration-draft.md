@@ -1,10 +1,10 @@
 # Mega-Study transfer test (preregistration draft)
 
 **Question.** Does original survey history improve forecasts on genuinely new
-binary outcomes? This uses Mega-Study outcomes only. The 1,166 reserved Wave 4
-outcomes remain sealed for the exact-repeat replication.
+binary outcomes? This uses Mega-Study outcomes only. The 1,166 Wave 4 participants were used for the registered memory replication.
+Their distinct Mega-Study outcome namespace remains unscored.
 
-**Data and split.** Pin the [Apache-2.0 Mega-Study release](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500-Mega-Study)
+**Data and split.** Pin the [Apache-2.0 Mega-Study release](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500-Mega-Study/tree/0401b715a341ac4b5f98b4424b4aecf9d29570d0)
 and its [paper and outcome definitions](https://arxiv.org/abs/2509.19088v5).
 Before examining outcomes, freeze the binary-outcome catalog, response codes
 and transformations. Exclude consent, attention and administrative items,
@@ -27,3 +27,14 @@ cases and endpoints match exactly. Public data may have appeared in LLM training
 
 **Status.** Draft. Pin the schema and backend, verify join counts without
 reading outcomes, and register the frozen plan before the first target run.
+
+## Execution requirements
+
+Build the join from participant IDs and the questionnaire-only metadata
+before reading target labels. Freeze the exact dataset revision, selected
+outcomes and full prompt assembly. Measure token coverage with the chosen
+backend's tokenizer, including its chat template and completion budget.
+A response with server-reported truncation or an input that would exceed
+the verified context window is excluded and counted. The previously used
+local pilot model ran with short context and provides no well-powered
+full-profile result. No Mega-Study outcomes were opened for this draft.
