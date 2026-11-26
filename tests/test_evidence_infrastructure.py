@@ -1,6 +1,7 @@
 import pytest
 
 from anthromesh.adapters.heuristic import HeuristicAdapter
+from anthromesh.cohort.categorical_anchor import CategoricalAnchorStudy, analyze_categories
 from anthromesh.cohort.human_anchor import AnchorRow, AnchorStudy, ForecastRow, analyze_anchors
 from anthromesh.models import CandidateOption, DecisionLog, GateAction, QueryContext
 from anthromesh.twin.engine import PersonalDecisionTwin
@@ -57,3 +58,30 @@ def test_anchor_rectifies_bias_and_suppresses_small_groups():
     study.predictions.append(ForecastRow(unit="a-0", group="large", probability=.5))
     with pytest.raises(ValueError, match="once"):
         analyze_anchors(study)
+
+def test_cross_ppi_uses_equal_label_budget_and_stable_folds():
+    def row(unit, i):
+        return dict(unit=unit, group="all", probabilities={"yes": .9 if i % 2 else .1,
+                                                          "no": .1 if i % 2 else .9})
+
+    payload = dict(
+        outcome_id="approval", model_revision="fixed", sampling_design="test",
+        categories=["yes", "no"], method="cross_ppi", folds=5,
+        anchors=[dict(row(f"a-{i}", i), outcome="yes" if i % 2 else "no") for i in range(40)],
+        predictions=[row(f"p-{i}", i) for i in range(200)],
+    )
+    result = analyze_categories(CategoricalAnchorStudy.model_validate(payload))
+    assert result["population"]["anchors"] == 40
+    assert result["population"]["tuning"] == 0
+    estimate = result["population"]["marginals"]["yes"]
+    assert estimate["estimate_unclipped"] == pytest.approx(.5)
+    assert estimate["interval"][0] < .5 < estimate["interval"][1]
+    assert estimate["interval"][1] - estimate["interval"][0] < (
+        estimate["human_only_interval"][1] - estimate["human_only_interval"][0]
+    )
+    payload["anchors"].reverse()
+    reordered = analyze_categories(CategoricalAnchorStudy.model_validate(payload))
+    assert reordered["population"]["marginals"]["yes"]["interval"] == pytest.approx(estimate["interval"])
+    payload["anchors"] = payload["anchors"][:9]
+    with pytest.raises(ValueError, match="twice as many"):
+        CategoricalAnchorStudy.model_validate(payload)

@@ -63,6 +63,31 @@ neither uniform subgroup coverage nor lower data requirements. The earlier-
 answer-defined subgroup mean absolute proxy error gap reached 0.111 for one
 item. It is descriptive. Tuned estimates are marginal and approximate.
 
+## Equal-budget cross-fitted survey replay
+
+Across 23 Twin-2K-500 categorical items and 300 random draws per item,
+Cross-PPI with the publisher's GPT-4.1 mini choices reached **98.8% mean
+joint coverage** at nominal 95%. Mean marginal interval width was
+**0.299 vs. 0.278** for human-only estimation using the identical labels.
+That is about 7.4% wider, so this real-LLM arm missed the efficiency bar.
+The model files contain discrete predictions, encoded here as one-hot
+vectors. These are estimates for the previously opened finite respondent
+pool with disjoint samples drawn without replacement.
+
+On the earlier-answer proxy, Cross-PPI reached 99.3% joint coverage with
+width 0.268 versus 0.278 at the same label budget. The proxy result
+illustrates the role of predictiveness. With publisher LLM predictions,
+joint coverage dropped to 45.6% under selected anchors and 78.3% under
+forecast drift. These deliberate assumption violations establish no
+deployment guarantee. Keep human-only estimation as the reference until a
+second survey clears both the coverage and width criteria.
+
+Reproduce from the pinned source files with
+`python examples/survey_anchor_replay.py . DATASET --published-llm`.
+The aggregate output is in [the LLM replay results](cross-ppi-published-llm-results.json).
+See [Cross-Prediction-Powered Inference](https://doi.org/10.1073/pnas.2322083121)
+and the [Twin-2K-500 data release](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500).
+
 ## Operational scope
 
 The memory-only route rejects autonomous approval for structured query

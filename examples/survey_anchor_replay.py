@@ -1,20 +1,21 @@
 """Survey replay on a previously used public response pool. No reserved rows."""
 from __future__ import annotations
 
+import argparse
 import csv
+import hashlib
 import json
-import sys
 from pathlib import Path
 from math import log, sqrt
 from statistics import NormalDist, fmean
 
 import numpy as np
 
-from anthromesh.benchmarks.public_twin import _items, _rank
-from anthromesh.cohort.categorical_anchor import _estimate
+from anthromesh.benchmarks.public_twin import _items, _rank, _reference_rows
+from anthromesh.cohort.categorical_anchor import _cross_estimate, _estimate
 
 REPEATS = 300
-METHODS = ("human_only", "human_equal_label_budget", "fixed", "power_tuned", "bounded_human", "bounded_fixed")
+METHODS = ("human_only", "human_equal_label_budget", "fixed", "power_tuned", "cross_ppi", "bounded_human", "bounded_fixed")
 SEED = 20261124
 
 
@@ -24,7 +25,7 @@ def read(path, wanted, items):
                 for row in csv.DictReader(stream) if row["pid"] in wanted}
 
 
-def evaluate(project, source):
+def evaluate(project, source, *, published_llm=False):
     ledger_path = project / "research/participant-use-ledger.json"
     if ledger_path.is_file():
         ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
@@ -51,20 +52,50 @@ def evaluate(project, source):
     keys = report["evaluation_question_columns"]
     early = read(source / "wave1_3_response.csv", used, keys)
     late = read(source / "wave4_response.csv", used, keys)
+    forecast_hashes = {}
+    if published_llm:
+        names = ("wave4_formatted_to_catalog_mapping.json", "responses_wave4_formatted.csv",
+                 "responses_llm_imputed_formatted.csv")
+        mapping_path, human_path, model_path = [source / name for name in names]
+        forecast_hashes = {name: hashlib.sha256((source / name).read_bytes()).hexdigest() for name in names}
+        mapping = {row["catalog_csv_column"]: row["formatted_column"]
+                   for row in json.loads(mapping_path.read_text(encoding="utf-8-sig"))}
+        published_human = _reference_rows(human_path)
+        published_model = _reference_rows(model_path)
     rng = np.random.default_rng(SEED)
     results = []
     subgroup_diagnostics = []
     for key in keys:
         item = catalog[key]
         categories = [option.option_id for option in item.options]
-        matched = [(item.answer(early[pid]), item.answer(late[pid])) for pid in sorted(used)]
-        matched = [(a, b) for a, b in matched if a is not None and b is not None]
+        matched = []
+        for pid in sorted(used):
+            earlier, later = item.answer(early[pid]), item.answer(late[pid])
+            if earlier is None or later is None:
+                continue
+            choice = earlier
+            if published_llm:
+                if key not in mapping or pid not in published_human or pid not in published_model:
+                    continue
+                column = mapping[key]
+                try:
+                    if item.answer({key: published_human[pid].get(column, "")}) != later:
+                        continue
+                    choice = item.answer({key: published_model[pid].get(column, "")})
+                except ValueError:
+                    continue
+                if choice is None:
+                    continue
+            matched.append((earlier, later, choice))
         n, k = len(matched), len(categories)
         if n < 100:
             continue
-        early_codes = np.array([categories.index(a) for a, _ in matched])
-        observed = np.eye(k)[[categories.index(b) for _, b in matched]]
-        proxy = np.eye(k)[early_codes] * .8 + .2 / k
+        early_codes = np.array([categories.index(a) for a, _, _ in matched])
+        observed = np.eye(k)[[categories.index(b) for _, b, _ in matched]]
+        forecast_codes = [categories.index(c) for _, _, c in matched]
+        proxy = np.eye(k)[forecast_codes]
+        if not published_llm:
+            proxy = proxy * .8 + .2 / k
         truth = observed.mean(axis=0)
         cells = [early_codes == c for c in range(k)]
         errors = [float(np.abs(proxy[mask] - observed[mask]).mean()) for mask in cells if int(mask.sum()) >= 10]
@@ -93,6 +124,12 @@ def evaluate(project, source):
                 bounds = {"human_only": [row["human_only_interval"] for row in arms["fixed"]]}
                 bounds.update({method: [row["interval"] for row in rows] for method, rows in arms.items()})
                 full_labels = np.concatenate((anchors, tuning))
+                folds = [list(range(i, len(full_labels), 5)) for i in range(5)]
+                bounds["cross_ppi"] = [
+                    _cross_estimate(observed[full_labels, c].tolist(), proxy[full_labels, c].tolist(),
+                                    corrected_proxy[forecast, c].tolist(), folds, z)["interval"]
+                    for c in range(k)
+                ]
                 bounds["human_equal_label_budget"] = [
                     _estimate(observed[full_labels, c].tolist(), proxy[full_labels, c].tolist(),
                               corrected_proxy[forecast, c].tolist(), [], [], "fixed", z)["human_only_interval"]
@@ -117,6 +154,8 @@ def evaluate(project, source):
                             "metrics": {name: {"joint_coverage": fmean(x[0] for x in rows),
                                                "mean_marginal_width": fmean(x[1] for x in rows)}
                                         for name, rows in metrics.items()}})
+    if not results:
+        raise ValueError("No item had at least 100 aligned responses.")
     summary = {}
     for scenario in ("random", "selected_anchors", "prediction_drift"):
         rows = [r for r in results if r["scenario"] == scenario]
@@ -124,13 +163,20 @@ def evaluate(project, source):
             field: fmean(r["metrics"][method][field] for r in rows)
             for field in ("joint_coverage", "mean_marginal_width")
         } for method in METHODS}
+    predictor = ("publisher GPT-4.1 mini choices, encoded as one-hot vectors" if published_llm
+                 else "fixed earlier-answer proxy, 80% one-hot plus 20% uniform; no LLM")
     return {"study": "finite respondent-pool resampling on previously used Twin-2K-500 participants",
-            "predictor": "fixed earlier-answer proxy, 80% one-hot plus 20% uniform; no LLM",
+            "predictor": predictor, "publisher_file_sha256": forecast_hashes,
             "seed": SEED, "resamples_per_item_scenario": REPEATS, "items": len(results) // 3,
             "nominal_joint_coverage_per_item": .95,
-            "sampling_note": "Disjoint draws without replacement; human-only comparison uses anchor labels only, and tuning uses extra labels.",
+            "sampling_note": "Disjoint draws without replacement; human-only comparison uses anchor labels only, and tuning uses extra labels. Cross-PPI and the equal-budget human-only arm use the same pooled labels.",
             "summary": summary, "item_results": results, "subgroup_diagnostics": subgroup_diagnostics}
 
 
 if __name__ == "__main__":
-    print(json.dumps(evaluate(Path(sys.argv[1]), Path(sys.argv[2])), indent=2))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("project", type=Path)
+    parser.add_argument("dataset", type=Path)
+    parser.add_argument("--published-llm", action="store_true")
+    args = parser.parse_args()
+    print(json.dumps(evaluate(args.project, args.dataset, published_llm=args.published_llm), indent=2))

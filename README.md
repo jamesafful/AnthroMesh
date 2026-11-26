@@ -398,6 +398,16 @@ may not compose a valid probability vector. Use the binary wrapper when the
 conservative bounded method is required. No finite-sample efficiency guarantee
 is made for the adaptive method.
 
+Set `method` to `cross_ppi` to use every human label as an anchor and
+fit the category-specific calibration weights out of fold. Omit `tuning`.
+The default is five folds with deterministic unit assignment and at least
+two anchors per fold. The output compares simultaneous asymptotic intervals
+against human-only intervals on the same anchors. Use a fixed base forecast,
+independent samples from the same population, and a stable calibration
+learner. Check coverage and efficiency on the intended survey before relying
+on the intervals. See [Cross-Prediction-Powered Inference](https://doi.org/10.1073/pnas.2322083121).
+
+
 For a loopback MCP consultation, start AnthroMesh in memory-only mode and
 run `python examples/minimal_mcp_agent.py`. A demo subject with no qualifying
 records will request owner review. Use `ANTHROMESH_MCP_TOKEN` only for an
