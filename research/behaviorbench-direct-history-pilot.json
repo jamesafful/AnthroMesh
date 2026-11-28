@@ -1,0 +1,17 @@
+{
+  "design": "exploratory mixed-history validation, one case per wallet",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M",
+  "context_limit": 8192,
+  "counts": {
+    "eligible": 16,
+    "scored": 16,
+    "over_context": 0,
+    "invalid": 0
+  },
+  "correct": {
+    "llm": 7,
+    "pooled": 8,
+    "frequency": 7
+  },
+  "max_prompt_tokens": 2104
+}
