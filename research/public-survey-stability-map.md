@@ -35,3 +35,23 @@ reviews. Both were ineligible under the pilot filters, leaving zero scored
 cases. A second, 24-PR exploratory pytest sample stopped on HTTP 403, with
 GitHub reporting that the anonymous rate limit had been exceeded. These
 runs provide no estimate of approval coverage or accuracy.
+
+### Scored pytest pilot
+
+After GitHub's anonymous quota reset, the original 24-PR sample completed.
+The collector found 14 review events. Six failed the eligibility filters
+and one was a later review by the same reviewer on the same PR. The seven
+remaining cases represented three reviewers. The production gate escalated
+all seven, giving 0% approval coverage and 100% escalation. Accuracy on
+approvals and changed-condition false approvals are undefined. The sample
+contains no independently labeled changed-condition cases.
+
+Reproduce the selected PRs with:
+
+```text
+python -m examples.public_review_pilot pytest-dev/pytest 15475 15470 15469 15468 15467 15465 15459 15458 15457 15452 15451 15449 15447 15446 15445 15444 15443 15441 15440 15439 15438 15437 15429 15428
+```
+
+Seven observations across three reviewers support a feasibility finding.
+A larger replay needs enough repeated contexts and independent reviewer
+histories to estimate coverage and risks with useful precision.
