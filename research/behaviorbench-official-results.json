@@ -1,0 +1,166 @@
+{
+  "primary": {
+    "cases": 9145,
+    "wallets": 998,
+    "matched": {
+      "0.1": {
+        "cases": 914,
+        "errors": {
+          "pooled": 0.23085339168490154,
+          "recent_frequency": 0.24507658643326038,
+          "all_history_frequency": 0.31947483588621445,
+          "markov": 0.3610503282275711
+        },
+        "pooled_reduction_vs_recent": 0.014223194748358842,
+        "paired_ci97_5": [
+          -0.025545316728288883,
+          0.056695898687799895
+        ]
+      },
+      "0.15": {
+        "cases": 1372,
+        "errors": {
+          "pooled": 0.25072886297376096,
+          "recent_frequency": 0.26384839650145775,
+          "all_history_frequency": 0.3272594752186589,
+          "markov": 0.3520408163265306
+        }
+      },
+      "0.2": {
+        "cases": 1829,
+        "errors": {
+          "pooled": 0.2695462001093494,
+          "recent_frequency": 0.2946965554948059,
+          "all_history_frequency": 0.33351558228540185,
+          "markov": 0.34062329141607434
+        }
+      },
+      "0.25": {
+        "cases": 2286,
+        "errors": {
+          "pooled": 0.28390201224846895,
+          "recent_frequency": 0.3127734033245844,
+          "all_history_frequency": 0.3442694663167104,
+          "markov": 0.336832895888014
+        },
+        "pooled_reduction_vs_recent": 0.02887139107611547,
+        "paired_ci97_5": [
+          0.004050528511422529,
+          0.053873745131052725
+        ]
+      },
+      "0.5": {
+        "cases": 4572,
+        "errors": {
+          "pooled": 0.3195538057742782,
+          "recent_frequency": 0.350174978127734,
+          "all_history_frequency": 0.3648293963254593,
+          "markov": 0.36023622047244097
+        }
+      },
+      "1.0": {
+        "cases": 9145,
+        "errors": {
+          "pooled": 0.3863313285948606,
+          "recent_frequency": 0.40164024056861675,
+          "all_history_frequency": 0.408529250956807,
+          "markov": 0.4121377802077638
+        }
+      }
+    }
+  },
+  "secondary": {
+    "cases": 18297,
+    "wallets": 1788,
+    "matched": {
+      "0.1": {
+        "cases": 1830,
+        "errors": {
+          "pooled": 0.0546448087431694,
+          "recent_frequency": 0.13224043715846995,
+          "all_history_frequency": 0.029508196721311476,
+          "markov": 0.16229508196721312
+        },
+        "pooled_reduction_vs_recent": 0.07759562841530054,
+        "paired_ci97_5": [
+          0.05447333475276599,
+          0.10185161842785168
+        ]
+      },
+      "0.15": {
+        "cases": 2745,
+        "errors": {
+          "pooled": 0.07650273224043716,
+          "recent_frequency": 0.13989071038251366,
+          "all_history_frequency": 0.038615664845173044,
+          "markov": 0.16867030965391622
+        }
+      },
+      "0.2": {
+        "cases": 3659,
+        "errors": {
+          "pooled": 0.06805138015851325,
+          "recent_frequency": 0.13801585132549876,
+          "all_history_frequency": 0.049467067504782726,
+          "markov": 0.16944520360754303
+        }
+      },
+      "0.25": {
+        "cases": 4574,
+        "errors": {
+          "pooled": 0.06777437691298645,
+          "recent_frequency": 0.1320507214691736,
+          "all_history_frequency": 0.06405771753388718,
+          "markov": 0.1655006558810669
+        },
+        "pooled_reduction_vs_recent": 0.06427634455618715,
+        "paired_ci97_5": [
+          0.051682842365952206,
+          0.07740433446013821
+        ]
+      },
+      "0.5": {
+        "cases": 9148,
+        "errors": {
+          "pooled": 0.13183209444687363,
+          "recent_frequency": 0.16495408832531702,
+          "all_history_frequency": 0.14658941845212067,
+          "markov": 0.17621337997376477
+        }
+      },
+      "1.0": {
+        "cases": 18297,
+        "errors": {
+          "pooled": 0.2664371208394819,
+          "recent_frequency": 0.27632945291577854,
+          "all_history_frequency": 0.27775045089358913,
+          "markov": 0.28545663223479256
+        }
+      }
+    }
+  },
+  "validation_selected_cutoffs": {
+    "0.1": {
+      "coverage": 0.09863313285948606,
+      "answered": 902,
+      "abstentions": 8243,
+      "error": 0.23059866962305986,
+      "upper95": 0.2585866433480196
+    },
+    "0.25": {
+      "coverage": 0.24078731547293603,
+      "answered": 2202,
+      "abstentions": 6943,
+      "error": 0.28247048138056313,
+      "upper95": 0.3013001291833192
+    }
+  },
+  "criteria": {
+    "25pct_gain": true,
+    "10pct_noninferiority": false,
+    "risk_cap_0.1": false,
+    "risk_cap_0.25": false
+  },
+  "passed": false,
+  "llm": "unrun: no capable matched backend in this evaluation"
+}
