@@ -76,3 +76,28 @@ contain direction and amount, and the available rows lack structured
 trade timestamps or block heights. An exploratory scan found no explicit
 timestamp or block markers in the prompt text. The shared wallet key
 alone therefore cannot enforce a pre-query activity join.
+
+## Binary LLM confidence implementation
+
+The local scorer uses canonical one-token yes and no continuations at
+the exact same prompt boundary. It verifies tokenizer identity for both
+continuations, requests one token at unit temperature, and applies the
+same additive bias to both logits. Equal bias preserves their probability
+ratio. It verifies that the two returned probabilities carry essentially
+all the mass, normalizes them, and checks agreement at biases of 80 and
+100 on the first scored case. Invalid, truncated or over-context cases
+are counted explicitly.
+
+Confidence for ranking is the larger of the two normalized probabilities.
+The values are conditional on this binary response representation.
+They are not calibrated estimates of correctness. The official run still
+requires validation-based cutoff selection and registration. The
+optional local JSON-lines export includes both probabilities and matched
+baseline scores keyed by publisher sample ID.
+
+The invariance check failed with prompt caching enabled. The scorer now
+disables caching and rejects drift above 0.0001. In the two-case live
+validation smoke test, both distributions normalized, the checked bias
+comparison had zero observed drift, and the local score export passed
+its normalization check. Both Qwen predictions were wrong. The sample
+validates score extraction and is too small to assess calibration.
