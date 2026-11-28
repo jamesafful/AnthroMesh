@@ -42,10 +42,10 @@ full-profile result. No Mega-Study outcomes were opened for this draft.
 ## Questionnaire inventory preflight
 
 The pinned release contains 19 study folders with parallel QSF questionnaire
-and response files. The metadata-only inventory retrieved 10 questionnaires
-and found 154 two-option multiple-choice fields. The nine unresolved downloads
+and response files. The metadata-only inventory retrieved 19 questionnaires
+and found 188 two-option multiple-choice fields. Any unresolved downloads
 are listed explicitly. Candidate fields can include administrative checks,
-repeated displays, or condition-specific variants. The 154 are raw field IDs,
+repeated displays, or condition-specific variants. These are raw field IDs,
 so they cannot be treated as eligible study endpoints.
 
 The inventory script reads QSF metadata only. Participant answers were not

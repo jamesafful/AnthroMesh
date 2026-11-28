@@ -202,17 +202,82 @@
     "story_beliefs": {
       "binary_choice_candidates": [],
       "questionnaire_sha256": "843fbf1d089a1f57223ac3ca2e18a11a89128cfec43fa4d78540aefa2f8c2f20"
+    },
+    "affective_priming": {
+      "binary_choice_candidates": [
+        "QID40",
+        "QID62"
+      ],
+      "questionnaire_sha256": "1837f06d7691aac22b5ae87ed316055f201d4508d3e02f3abf19e080422a73c8"
+    },
+    "hiring_algorithms": {
+      "binary_choice_candidates": [
+        "QID12",
+        "QID31"
+      ],
+      "questionnaire_sha256": "414335e3b02a5ed76da1ec3f12d7ad1e00d4c4f5ac6a22f39dd021babbc779aa"
+    },
+    "infotainment": {
+      "binary_choice_candidates": [
+        "QID1295",
+        "QID1363",
+        "QID1364",
+        "QID1440",
+        "QID1444",
+        "QID1447",
+        "QID1450",
+        "QID1453",
+        "QID1456",
+        "QID1459",
+        "QID1462",
+        "QID1465",
+        "QID1468",
+        "QID1496",
+        "QID1498",
+        "QID367",
+        "QID675"
+      ],
+      "questionnaire_sha256": "2e5a865951fa31d155d429773bd69dc67214d353e77c321da1bea4d4aed9d619"
+    },
+    "privacy": {
+      "binary_choice_candidates": [
+        "QID110",
+        "QID147",
+        "QID148",
+        "QID22",
+        "QID34",
+        "QID51",
+        "QID67",
+        "QID86",
+        "QID88",
+        "QID9",
+        "QID98"
+      ],
+      "questionnaire_sha256": "284c58e5515b08c68e08fd7cbdcff7975c2b94b059ab26cade11721fe73942ed"
+    },
+    "recommendation_algorithms": {
+      "binary_choice_candidates": [],
+      "questionnaire_sha256": "735d8d90f8e14d6f7d5aab8caaf1f21b636422fb602d54522ad1d05cd07ff3e8"
+    },
+    "targeting_fairness": {
+      "binary_choice_candidates": [],
+      "questionnaire_sha256": "64933a54a468e1c6887ebcb0fb016d9b8caa3fea7cf020089eaa15d62e087f23"
+    },
+    "idea_evaluation": {
+      "questionnaire_sha256": "13eea7da5f240513862c2a860e33267a34dacd80022660bd6df09833773763c7",
+      "binary_choice_candidates": []
+    },
+    "idea_generation": {
+      "questionnaire_sha256": "e044eba7413952e4fd511bb737354605911b5bbc9fc993f9788e3921c798fc4f",
+      "binary_choice_candidates": []
+    },
+    "obedient_twins": {
+      "questionnaire_sha256": "80138b7e57382611e1d49ef06e1b6d235f8bddc969d5c43251566ad9cd2af334",
+      "binary_choice_candidates": [
+        "QID34",
+        "QID35"
+      ]
     }
   },
-  "unavailable": [
-    "affective_priming",
-    "hiring_algorithms",
-    "idea_evaluation",
-    "idea_generation",
-    "infotainment",
-    "obedient_twins",
-    "privacy",
-    "recommendation_algorithms",
-    "targeting_fairness"
-  ]
+  "unavailable": []
 }
