@@ -1,0 +1,283 @@
+{
+  "revision": "0401b715a341ac4b5f98b4424b4aecf9d29570d0",
+  "studies": {
+    "default_eric": {
+      "questionnaire_sha256": "5a74369bd46641971eabadd676ab94f5217622724f465a6bb692293d7ea6287b",
+      "binary_choice_candidates": [
+        "QID322",
+        "QID326",
+        "QID330",
+        "QID480",
+        "QID503",
+        "QID520",
+        "QID539",
+        "QID540",
+        "QID543",
+        "QID554",
+        "QID557",
+        "QID559",
+        "QID561",
+        "QID563",
+        "QID569",
+        "QID575",
+        "QID594",
+        "QID598",
+        "QID603",
+        "QID605",
+        "QID606",
+        "QID607",
+        "QID609",
+        "QID614",
+        "QID616",
+        "QID618"
+      ]
+    },
+    "quantitative_intuition": {
+      "questionnaire_sha256": "37501d1cb1c3b0e02553c22450ad9fadc2afe0f20ad62e180caeb2065862f4e1",
+      "binary_choice_candidates": [
+        "QID14",
+        "QID8"
+      ]
+    },
+    "accuracy_nudges": {
+      "binary_choice_candidates": [
+        "QID1295",
+        "QID1363",
+        "QID1364",
+        "QID1440",
+        "QID1444",
+        "QID1447",
+        "QID1450",
+        "QID1453",
+        "QID1456",
+        "QID1459",
+        "QID1462",
+        "QID1465",
+        "QID1468",
+        "QID1496",
+        "QID1498",
+        "QID367",
+        "QID675"
+      ],
+      "questionnaire_sha256": "3b5c315130567c41a64dca5acb02e5f99a8c7334e7a7b5b12ecc5ce4e6a578a3"
+    },
+    "consumer_minimalism": {
+      "binary_choice_candidates": [],
+      "questionnaire_sha256": "bcd49018afbf5da1bf1417811196de4b5ed66710cb3d2b0fbe31053355fc0512"
+    },
+    "context_effects": {
+      "binary_choice_candidates": [
+        "QID322",
+        "QID326",
+        "QID330",
+        "QID480",
+        "QID503",
+        "QID520",
+        "QID539",
+        "QID540",
+        "QID543",
+        "QID554",
+        "QID557",
+        "QID559",
+        "QID561",
+        "QID563",
+        "QID569",
+        "QID575",
+        "QID594",
+        "QID598",
+        "QID603",
+        "QID605",
+        "QID606",
+        "QID607",
+        "QID609",
+        "QID614",
+        "QID616"
+      ],
+      "questionnaire_sha256": "0bb1a6e0aea2166927816ffe97037c59253f50ea162b59a4faa3a55d88c1bcb8"
+    },
+    "digital_certification": {
+      "binary_choice_candidates": [
+        "QID161",
+        "QID164",
+        "QID194",
+        "QID2"
+      ],
+      "questionnaire_sha256": "95970bcf7ffd5ce57dd8771ac20da2991d31a3ffe68700274dd780e077253ea7"
+    },
+    "junk_fees": {
+      "binary_choice_candidates": [
+        "QID122",
+        "QID124",
+        "QID137",
+        "QID139",
+        "QID152",
+        "QID154",
+        "QID199",
+        "QID201",
+        "QID219",
+        "QID221",
+        "QID72",
+        "QID75",
+        "QID92",
+        "QID94"
+      ],
+      "questionnaire_sha256": "5b658655a3a7144e99b294bcbdcfceea7f56094b7ca60ee038d7c8d1e0718e1e"
+    },
+    "preference_redistribution": {
+      "binary_choice_candidates": [
+        "QID7"
+      ],
+      "questionnaire_sha256": "9b4ffc0e00c7cbfbba76b499cdb2127caa71977104321dda37cb2296f7d6bfe6"
+    },
+    "promiscuous_donors": {
+      "binary_choice_candidates": [
+        "QID113",
+        "QID118",
+        "QID20",
+        "QID21",
+        "QID302",
+        "QID307",
+        "QID382",
+        "QID383",
+        "QID384",
+        "QID385",
+        "QID395",
+        "QID407",
+        "QID423",
+        "QID427",
+        "QID428",
+        "QID449",
+        "QID450",
+        "QID451",
+        "QID454",
+        "QID455",
+        "QID456",
+        "QID457",
+        "QID460",
+        "QID461",
+        "QID462",
+        "QID463",
+        "QID592",
+        "QID593",
+        "QID619",
+        "QID621",
+        "QID622",
+        "QID623",
+        "QID625",
+        "QID635",
+        "QID639",
+        "QID640",
+        "QID641",
+        "QID643",
+        "QID644",
+        "QID645",
+        "QID646",
+        "QID647",
+        "QID648",
+        "QID649",
+        "QID650",
+        "QID651",
+        "QID652",
+        "QID653",
+        "QID654",
+        "QID655",
+        "QID656",
+        "QID657",
+        "QID658",
+        "QID663",
+        "QID664",
+        "QID681",
+        "QID682",
+        "QID683",
+        "QID684",
+        "QID685",
+        "QID686",
+        "QID687",
+        "QID688",
+        "QID689",
+        "QID88"
+      ],
+      "questionnaire_sha256": "93818f4a3aea9f916ff093c0b54d8759131d87532faede861dffb8eeb0c06315"
+    },
+    "story_beliefs": {
+      "binary_choice_candidates": [],
+      "questionnaire_sha256": "843fbf1d089a1f57223ac3ca2e18a11a89128cfec43fa4d78540aefa2f8c2f20"
+    },
+    "affective_priming": {
+      "binary_choice_candidates": [
+        "QID40",
+        "QID62"
+      ],
+      "questionnaire_sha256": "1837f06d7691aac22b5ae87ed316055f201d4508d3e02f3abf19e080422a73c8"
+    },
+    "hiring_algorithms": {
+      "binary_choice_candidates": [
+        "QID12",
+        "QID31"
+      ],
+      "questionnaire_sha256": "414335e3b02a5ed76da1ec3f12d7ad1e00d4c4f5ac6a22f39dd021babbc779aa"
+    },
+    "infotainment": {
+      "binary_choice_candidates": [
+        "QID1295",
+        "QID1363",
+        "QID1364",
+        "QID1440",
+        "QID1444",
+        "QID1447",
+        "QID1450",
+        "QID1453",
+        "QID1456",
+        "QID1459",
+        "QID1462",
+        "QID1465",
+        "QID1468",
+        "QID1496",
+        "QID1498",
+        "QID367",
+        "QID675"
+      ],
+      "questionnaire_sha256": "2e5a865951fa31d155d429773bd69dc67214d353e77c321da1bea4d4aed9d619"
+    },
+    "privacy": {
+      "binary_choice_candidates": [
+        "QID110",
+        "QID147",
+        "QID148",
+        "QID22",
+        "QID34",
+        "QID51",
+        "QID67",
+        "QID86",
+        "QID88",
+        "QID9",
+        "QID98"
+      ],
+      "questionnaire_sha256": "284c58e5515b08c68e08fd7cbdcff7975c2b94b059ab26cade11721fe73942ed"
+    },
+    "recommendation_algorithms": {
+      "binary_choice_candidates": [],
+      "questionnaire_sha256": "735d8d90f8e14d6f7d5aab8caaf1f21b636422fb602d54522ad1d05cd07ff3e8"
+    },
+    "targeting_fairness": {
+      "binary_choice_candidates": [],
+      "questionnaire_sha256": "64933a54a468e1c6887ebcb0fb016d9b8caa3fea7cf020089eaa15d62e087f23"
+    },
+    "idea_evaluation": {
+      "questionnaire_sha256": "13eea7da5f240513862c2a860e33267a34dacd80022660bd6df09833773763c7",
+      "binary_choice_candidates": []
+    },
+    "idea_generation": {
+      "questionnaire_sha256": "e044eba7413952e4fd511bb737354605911b5bbc9fc993f9788e3921c798fc4f",
+      "binary_choice_candidates": []
+    },
+    "obedient_twins": {
+      "questionnaire_sha256": "80138b7e57382611e1d49ef06e1b6d235f8bddc969d5c43251566ad9cd2af334",
+      "binary_choice_candidates": [
+        "QID34",
+        "QID35"
+      ]
+    }
+  },
+  "unavailable": []
+}
