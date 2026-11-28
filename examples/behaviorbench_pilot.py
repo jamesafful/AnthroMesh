@@ -14,14 +14,14 @@ HISTORY = re.compile(r"^\d+\. Question: (.*?) \| Event: (.*?) \| Choice: (yes|no
 WORD = re.compile(r"[a-z]{3,}")
 
 
-def load(path):
+def load(path, split="validation"):
     features, labels, wallets, groups, markets, start, end = [], [], [], [], [], [], []
     rich, sequences, mixed = [], [], []
     with gzip.open(path, "rt", encoding="utf-8") as source:
         for line in source:
             row = json.loads(line)
-            if row["split"] != "validation":
-                raise ValueError("This exploratory protocol uses publisher validation only.")
+            if row["split"] != split:
+                raise ValueError("Unexpected publisher split.")
             history = [(question, int(side == "yes"), float(confidence))
                        for question, event, side, confidence in HISTORY.findall(row["input_text"])
                        if event != row["event_slug"] and question != row["question"]]
