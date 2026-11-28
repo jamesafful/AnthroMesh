@@ -28,3 +28,31 @@ def test_replay_respects_equal_times_expiry_and_changed_context():
         "changed_condition_approvals": 0, "changed_condition_wrong_approvals": 0,
     }
 
+
+def test_public_collector_discards_future_checks_and_deduplicates(monkeypatch):
+    from examples import public_review_pilot
+
+    review = {
+        "id": 12, "user": {"id": 42, "type": "User"},
+        "author_association": "MEMBER", "state": "APPROVED",
+        "commit_id": "abc", "submitted_at": "2026-01-04T12:00:00Z",
+    }
+
+    def fetch(path):
+        if "/reviews?" in path:
+            return [review, dict(review, id=13)]
+        if "/check-runs?" in path:
+            return {"check_runs": [
+                {"conclusion": "success", "completed_at": "2026-01-04T11:00:00Z"},
+                {"conclusion": "failure", "completed_at": "2026-01-04T13:00:00Z"},
+            ]}
+        return {"parents": [{"sha": "previous"}], "files": [{"filename": "tests/test_example.py"}]}
+
+    captured = []
+    monkeypatch.setattr(public_review_pilot, "fetch", fetch)
+    monkeypatch.setattr(public_review_pilot, "replay", captured.extend)
+    result = public_review_pilot.collect("example/project", [1])
+    assert result["collection"]["later_reviews_on_same_pr"] == 1
+    assert len(captured) == 1
+    assert '"check_conclusions": ["success"]' in captured[0].context
+    assert '"tests_touched": true' in captured[0].context
