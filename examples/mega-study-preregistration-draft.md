@@ -38,3 +38,19 @@ A response with server-reported truncation or an input that would exceed
 the verified context window is excluded and counted. The previously used
 local pilot model ran with short context and provides no well-powered
 full-profile result. No Mega-Study outcomes were opened for this draft.
+
+## Questionnaire inventory preflight
+
+The pinned release contains 19 study folders with parallel QSF questionnaire
+and response files. The metadata-only inventory retrieved 10 questionnaires
+and found 154 two-option multiple-choice fields. The nine unresolved downloads
+are listed explicitly. Candidate fields can include administrative checks,
+repeated displays, or condition-specific variants. The 154 are raw field IDs,
+so they cannot be treated as eligible study endpoints.
+
+The inventory script reads QSF metadata only. Participant answers were not
+opened. The remaining prerequisites are completing the inventory, mapping
+candidate fields to paper-defined endpoints and conditions, projecting PID
+alone for join counts, and freezing a full-context backend before registering
+the protocol. The public checkout does not contain the reserve membership
+ledger used by the earlier memory replication.
