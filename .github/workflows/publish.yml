@@ -19,8 +19,8 @@ jobs:
     env:
       MCP_PUBLISHER_VERSION: v1.8.1
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - name: Build and check the distribution
@@ -32,7 +32,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           skip-existing: true
-      - uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
+      - uses: sigstore/cosign-installer@881c63bd87e38389154debd8331404ce7ca8a3ab
       - name: Verify and install the MCP publisher
         run: |
           set -euo pipefail
