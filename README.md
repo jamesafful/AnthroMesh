@@ -19,7 +19,7 @@ delegation for an exact proposed action. Predictive fidelity is experimental.
   replays at equal human label cost. Use human-only estimates for these settings.
 - The delegation controls have internal test coverage. Independent review
   and complete protocol certification remain open. Report vulnerabilities
-  through the [security policy](SECURITY.md).
+  through the [security policy](https://github.com/jamesafful/AnthroMesh/blob/main/SECURITY.md).
 
 
 1. **Personal Decision Twin (`anthromesh.twin`)** — Captures structured `(context, options_considered, chosen_action, rejected_options, rationale)` decision logs in a local-first SQLite Behavioral Vault, enforces deterministic boundary/consent policies, and supports owner escalation when the recorded preference is insufficient.
@@ -32,11 +32,59 @@ delegation for an exact proposed action. Predictive fidelity is experimental.
 
 ## Quickstart
 
-### 1. Install Locally
+### Install from PyPI
+
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e ".[all]"
+python -m pip install anthromesh
+```
+
+The base package supports SQLite, the example below, and MCP over stdio.
+For A2A HTTP and optional protocol integrations, install
+`python -m pip install "anthromesh[protocols]"`.
+Add the `encryption`, `postgres`, `vector`, or `survey` extra only if you
+need SQLCipher, PostgreSQL, SQLite vector search, or Parquet support.
+
+### Try an escalation in five minutes
+
+Save this as `quickstart.py` and run `python quickstart.py`. It uses a temporary
+vault and performs no network calls.
+
+```python
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+from anthromesh.adapters.heuristic import HeuristicAdapter
+from anthromesh.models import CandidateOption, QueryContext
+from anthromesh.twin.engine import PersonalDecisionTwin
+from anthromesh.vault.policy_engine import PolicyEngine
+from anthromesh.vault.storage import BehavioralVault
+
+with TemporaryDirectory() as directory:
+    vault = BehavioralVault(str(Path(directory) / "decisions.db"))
+    twin = PersonalDecisionTwin(vault, PolicyEngine(), HeuristicAdapter(), memory_only=True)
+    decision = twin.query_decision(QueryContext(
+        subject_id="demo-owner",
+        domain="planning",
+        context="Schedule a recurring team check-in for Monday morning.",
+        candidate_options=[
+            CandidateOption(option_id="accept", label="Accept"),
+            CandidateOption(option_id="decline", label="Decline"),
+        ],
+    ))
+    print(decision.action.value)
+    print(decision.validity_envelope.model_dump_json(indent=2))
+```
+
+The first line is `escalate`. The validity envelope reports
+`recommended_use: "ask_owner"` and `grants_authority: false` because the
+empty vault has no matching decisions.
+
+### Run examples from a source checkout
+
+```bash
+git clone https://github.com/jamesafful/AnthroMesh.git
+cd AnthroMesh
+python -m pip install -e ".[all]"
 ```
 
 ### 2. Run the Full End-to-End Demo & Benchmarks
@@ -291,7 +339,7 @@ the survey. Retest agreement applies to repeated questions in this subset.
 The pooled prediction set is exploratory because answers are correlated
 within participants and the calibration and evaluation questions differ.
 
-The [follow-up validation protocol](examples/public-twin-validation-plan.md)
+The [follow-up validation protocol](https://github.com/jamesafful/AnthroMesh/blob/main/examples/public-twin-validation-plan.md)
 reserves a fresh 200-participant holdout and fixes the required effect in
 advance. Reproduce the controls and frozen evaluation with these commands.
 
@@ -301,7 +349,7 @@ anthromesh validate-public-twin development DATA_DIR examples/public-twin-2k-500
 anthromesh validate-public-twin sealed DATA_DIR examples/public-twin-2k-500-report.json frozen.json
 ```
 
-The [follow-up report](examples/public-twin-validation-report.json) records
+The [follow-up report](https://github.com/jamesafful/AnthroMesh/blob/main/examples/public-twin-validation-report.json) records
 54.27% participant-mean accuracy for the population-adjusted Twin and 54.09%
 for majority. The difference missed the preregistered margin. The preference
 memory, escalation, and delegation scope reflects this result.
@@ -316,7 +364,7 @@ profile, the original catalog questions and option order, and a constrained
 JSON output. The unchanged archived questionnaire exceeded the tested context
 window. This is a same-case comparison with different inputs.
 
-See the [public validation results](examples/public-validation-results.md) for the negative cross-question result and the separate exact-repeat memory experiment.
+See the [public validation results](https://github.com/jamesafful/AnthroMesh/blob/main/examples/public-validation-results.md) for the negative cross-question result and the separate exact-repeat memory experiment.
 
 ### Continuous owner audits
 
@@ -388,7 +436,7 @@ Existing separately signed delegation controls still govern external actions.
 The [preregistered survey replication](https://doi.org/10.5281/zenodo.24560763) covered 70.8% of paired
 answers and reached 84.0% accuracy versus 55.5% for matched majority on
 1,166 reserved Wave 4 participants. Pricing drove the gain. The [technical
-report](research/TECHNICAL-REPORT.md) gives scope, controls, and intervals.
+report](https://github.com/jamesafful/AnthroMesh/blob/main/research/TECHNICAL-REPORT.md) gives scope, controls, and intervals.
 
 For binary population estimates, run `anthromesh calibrate-cohort study.json`.
 The JSON declares `outcome_id`, `model_revision`, `sampling_design`, an `anchors`

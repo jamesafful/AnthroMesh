@@ -2,13 +2,15 @@ name: Publish package and MCP listing
 
 on:
   workflow_dispatch:
+  push:
+    tags: [v0.2.1]
 
 permissions:
   contents: read
 
 jobs:
   publish:
-    if: github.repository == 'jamesafful/AnthroMesh' && github.ref == 'refs/tags/v0.2.0'
+    if: github.repository == 'jamesafful/AnthroMesh' && (github.ref == 'refs/tags/v0.2.0' || github.ref == 'refs/tags/v0.2.1')
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
