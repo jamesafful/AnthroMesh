@@ -1,0 +1,57 @@
+name: Publish GitHub release v0.2.0
+on:
+  push:
+    branches: [new/github-release-v0.2.0]
+permissions:
+  contents: write
+jobs:
+  release:
+    if: github.repository == 'jamesafful/AnthroMesh'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify and publish the PyPI distributions
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: jamesafful/AnthroMesh
+        run: |
+          set -euo pipefail
+          if gh release view v0.2.0 >/dev/null 2>&1; then
+            echo 'Release already exists. Leaving it untouched.'
+            exit 0
+          fi
+          tag_object=$(gh api repos/$GH_REPO/git/ref/tags/v0.2.0 --jq .object.sha)
+          test "$(gh api repos/$GH_REPO/git/tags/$tag_object --jq .object.sha)" = cbba07e0b950f14639c0584305b124b00d55e1ca
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          from urllib.request import urlopen
+
+          names = {"anthromesh-0.2.0-py3-none-any.whl", "anthromesh-0.2.0.tar.gz"}
+          with urlopen("https://pypi.org/pypi/anthromesh/0.2.0/json", timeout=30) as response:
+              entries = {f["filename"]: f for f in json.load(response)["urls"]}
+          lines = []
+          for name in sorted(names):
+              entry = entries[name]
+              if not entry["url"].startswith("https://files.pythonhosted.org/"):
+                  raise ValueError("Unexpected PyPI download host")
+              with urlopen(entry["url"], timeout=30) as response:
+                  data = response.read()
+              digest = hashlib.sha256(data).hexdigest()
+              if digest != entry["digests"]["sha256"]:
+                  raise ValueError("Artifact hash mismatch")
+              Path(name).write_bytes(data)
+              lines.append(f"{digest}  {name}")
+          Path("SHA256SUMS").write_text("\n".join(lines) + "\n", encoding="ascii")
+          PY
+          cat > release-notes.md <<'EOF'
+          AnthroMesh v0.2.0 provides local preference memory, owner escalation, and verifiable delegation for agents.
+
+          - The preregistered GSS replication found a 19.5 percentage-point mean gain over matched majority for two-answer survey memory across 20 items. Live accuracy under the runtime's 90-day rule remains unmeasured.
+          - Categorical cohort estimation defaults to human-only, with guarded Cross-PPI available when its checks pass. Both real-LLM replays missed the equal-budget efficiency target.
+          - The attached wheel and source distribution are the exact files published on PyPI. Verify the downloads with SHA256SUMS.
+
+          [Technical report](https://github.com/jamesafful/AnthroMesh/blob/v0.2.0/research/TECHNICAL-REPORT.md) · [Independent security review request](https://github.com/jamesafful/AnthroMesh/issues/1) · [PyPI](https://pypi.org/project/anthromesh/0.2.0/) · [Official MCP Registry](https://registry.modelcontextprotocol.io/?search=io.github.jamesafful%2Fanthromesh)
+          EOF
+          gh release create v0.2.0 --verify-tag --title 'AnthroMesh v0.2.0' --notes-file release-notes.md --draft anthromesh-0.2.0-py3-none-any.whl anthromesh-0.2.0.tar.gz SHA256SUMS
+          gh release edit v0.2.0 --draft=false --latest
