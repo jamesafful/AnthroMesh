@@ -1,4 +1,261 @@
 {
+  "mixed_history": {
+    "definition": "At least 25% of visible prior choices are on the minority side",
+    "cases": 1775,
+    "wallets": 210,
+    "curves": {
+      "personal_history_frequency": [
+        {
+          "coverage": 0.10028169014084506,
+          "error": 0.25842696629213485,
+          "enriched_risk_reduction_ci95": [
+            0.007564046769551532,
+            0.15743427587519915
+          ]
+        },
+        {
+          "coverage": 0.14985915492957746,
+          "error": 0.2857142857142857,
+          "enriched_risk_reduction_ci95": [
+            0.04855921389394186,
+            0.1627212087187751
+          ]
+        },
+        {
+          "coverage": 0.2,
+          "error": 0.28450704225352114,
+          "enriched_risk_reduction_ci95": [
+            0.03690910825666891,
+            0.13833003491873214
+          ]
+        },
+        {
+          "coverage": 0.25014084507042256,
+          "error": 0.2927927927927928,
+          "enriched_risk_reduction_ci95": [
+            0.034872907761797745,
+            0.12062007745982631
+          ]
+        },
+        {
+          "coverage": 0.5002816901408451,
+          "error": 0.3322072072072072,
+          "enriched_risk_reduction_ci95": [
+            0.015163980880913785,
+            0.08536763529283123
+          ]
+        },
+        {
+          "coverage": 1.0,
+          "error": 0.39436619718309857,
+          "enriched_risk_reduction_ci95": [
+            -0.0032279427472762315,
+            0.04566569964062485
+          ]
+        }
+      ],
+      "recent_frequency": [
+        {
+          "coverage": 0.10028169014084506,
+          "error": 0.23595505617977527,
+          "enriched_risk_reduction_ci95": [
+            -0.0237587931651926,
+            0.1456364414121199
+          ]
+        },
+        {
+          "coverage": 0.14985915492957746,
+          "error": 0.2631578947368421,
+          "enriched_risk_reduction_ci95": [
+            0.009013373245441754,
+            0.1558396218036634
+          ]
+        },
+        {
+          "coverage": 0.2,
+          "error": 0.28169014084507044,
+          "enriched_risk_reduction_ci95": [
+            0.02072905094142578,
+            0.1471506699559337
+          ]
+        },
+        {
+          "coverage": 0.25014084507042256,
+          "error": 0.28603603603603606,
+          "enriched_risk_reduction_ci95": [
+            0.01598146407486667,
+            0.12479673395038818
+          ]
+        },
+        {
+          "coverage": 0.5002816901408451,
+          "error": 0.32207207207207206,
+          "enriched_risk_reduction_ci95": [
+            0.012074226368465021,
+            0.06733554940259816
+          ]
+        },
+        {
+          "coverage": 1.0,
+          "error": 0.38929577464788734,
+          "enriched_risk_reduction_ci95": [
+            -0.008373770388761444,
+            0.0417179507004923
+          ]
+        }
+      ],
+      "markov_three_choice": [
+        {
+          "coverage": 0.10028169014084506,
+          "error": 0.3707865168539326,
+          "enriched_risk_reduction_ci95": [
+            0.10601164463804215,
+            0.2868072686978128
+          ]
+        },
+        {
+          "coverage": 0.14985915492957746,
+          "error": 0.3533834586466165,
+          "enriched_risk_reduction_ci95": [
+            0.09944785461106115,
+            0.24403044754294095
+          ]
+        },
+        {
+          "coverage": 0.2,
+          "error": 0.3464788732394366,
+          "enriched_risk_reduction_ci95": [
+            0.08784329804812611,
+            0.2069872731335799
+          ]
+        },
+        {
+          "coverage": 0.25014084507042256,
+          "error": 0.3400900900900901,
+          "enriched_risk_reduction_ci95": [
+            0.07557961199452434,
+            0.16799053402832867
+          ]
+        },
+        {
+          "coverage": 0.5002816901408451,
+          "error": 0.34797297297297297,
+          "enriched_risk_reduction_ci95": [
+            0.03513940426320169,
+            0.0947665575880611
+          ]
+        },
+        {
+          "coverage": 1.0,
+          "error": 0.40056338028169014,
+          "enriched_risk_reduction_ci95": [
+            0.0,
+            0.052813871122955824
+          ]
+        }
+      ],
+      "pooled_history_model": [
+        {
+          "coverage": 0.10028169014084506,
+          "error": 0.16853932584269662,
+          "enriched_risk_reduction_ci95": [
+            -0.04243727826719486,
+            0.018944191586347022
+          ]
+        },
+        {
+          "coverage": 0.14985915492957746,
+          "error": 0.15413533834586465,
+          "enriched_risk_reduction_ci95": [
+            -0.06277356515508077,
+            -0.0010136802733807322
+          ]
+        },
+        {
+          "coverage": 0.2,
+          "error": 0.2028169014084507,
+          "enriched_risk_reduction_ci95": [
+            -0.009075093682889224,
+            0.015927823410842864
+          ]
+        },
+        {
+          "coverage": 0.25014084507042256,
+          "error": 0.21846846846846846,
+          "enriched_risk_reduction_ci95": [
+            -0.017133102532135503,
+            0.017094863731656203
+          ]
+        },
+        {
+          "coverage": 0.5002816901408451,
+          "error": 0.28716216216216217,
+          "enriched_risk_reduction_ci95": [
+            -0.007198108760063135,
+            0.016145310597705607
+          ]
+        },
+        {
+          "coverage": 1.0,
+          "error": 0.37014084507042255,
+          "enriched_risk_reduction_ci95": [
+            -0.012464955383257297,
+            0.0056072114295027085
+          ]
+        }
+      ],
+      "enriched_pooled_model": [
+        {
+          "coverage": 0.10028169014084506,
+          "error": 0.1797752808988764,
+          "enriched_risk_reduction_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "coverage": 0.14985915492957746,
+          "error": 0.18421052631578946,
+          "enriched_risk_reduction_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "coverage": 0.2,
+          "error": 0.2,
+          "enriched_risk_reduction_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "coverage": 0.25014084507042256,
+          "error": 0.21846846846846846,
+          "enriched_risk_reduction_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "coverage": 0.5002816901408451,
+          "error": 0.28265765765765766,
+          "enriched_risk_reduction_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "coverage": 1.0,
+          "error": 0.37352112676056337,
+          "enriched_risk_reduction_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    }
+  },
   "controls": {
     "paired_comparisons": {
       "population": {
@@ -15,6 +272,40 @@
           "ci95": [
             0.1606661896621202,
             0.2238039889382947
+          ]
+        }
+      },
+      "markov_three_choice": {
+        "accuracy": 0.7273218142548596,
+        "accuracy_gain": {
+          "mean": 0.021868250539956804,
+          "ci95": [
+            0.0077785519285580975,
+            0.03573674940442573
+          ]
+        },
+        "log_loss_reduction": {
+          "mean": 0.05080141930273995,
+          "ci95": [
+            0.037932668041727895,
+            0.06299888161393492
+          ]
+        }
+      },
+      "enriched_pooled_model": {
+        "accuracy": 0.7475701943844493,
+        "accuracy_gain": {
+          "mean": 0.0016198704103671706,
+          "ci95": [
+            -0.0026449025237297833,
+            0.005938956027955736
+          ]
+        },
+        "log_loss_reduction": {
+          "mean": 0.0009812450395378677,
+          "ci95": [
+            -0.0006556338668773204,
+            0.002576719994827732
           ]
         }
       },
@@ -195,6 +486,90 @@
           "risk_reduction_ci95": [
             0.2151951713263834,
             0.31474130094995784
+          ]
+        }
+      ],
+      "markov_three_choice": [
+        {
+          "coverage": 0.09989200863930886,
+          "cases": 370,
+          "pooled_error": 0.02972972972972973,
+          "comparison_error": 0.14594594594594595,
+          "risk_reduction_ci95": [
+            0.07482663440455649,
+            0.1641922187321924
+          ]
+        },
+        {
+          "coverage": 0.25,
+          "cases": 926,
+          "pooled_error": 0.07775377969762419,
+          "comparison_error": 0.1587473002159827,
+          "risk_reduction_ci95": [
+            0.048960524770958615,
+            0.11889889154028721
+          ]
+        },
+        {
+          "coverage": 0.5,
+          "cases": 1852,
+          "pooled_error": 0.11663066954643629,
+          "comparison_error": 0.17062634989200864,
+          "risk_reduction_ci95": [
+            0.03527802550697405,
+            0.07509609040025181
+          ]
+        },
+        {
+          "coverage": 1.0,
+          "cases": 3704,
+          "pooled_error": 0.2508099352051836,
+          "comparison_error": 0.2726781857451404,
+          "risk_reduction_ci95": [
+            0.007778551928558121,
+            0.03573674940442571
+          ]
+        }
+      ],
+      "enriched_pooled_model": [
+        {
+          "coverage": 0.09989200863930886,
+          "cases": 370,
+          "pooled_error": 0.02972972972972973,
+          "comparison_error": 0.032432432432432434,
+          "risk_reduction_ci95": [
+            -0.009227849558198609,
+            0.01573261891620643
+          ]
+        },
+        {
+          "coverage": 0.25,
+          "cases": 926,
+          "pooled_error": 0.07775377969762419,
+          "comparison_error": 0.0939524838012959,
+          "risk_reduction_ci95": [
+            0.006915312256176391,
+            0.026903189853787562
+          ]
+        },
+        {
+          "coverage": 0.5,
+          "cases": 1852,
+          "pooled_error": 0.11663066954643629,
+          "comparison_error": 0.11663066954643629,
+          "risk_reduction_ci95": [
+            -0.005608493532344853,
+            0.006252791403859166
+          ]
+        },
+        {
+          "coverage": 1.0,
+          "cases": 3704,
+          "pooled_error": 0.2508099352051836,
+          "comparison_error": 0.25242980561555073,
+          "risk_reduction_ci95": [
+            -0.0026449025237297802,
+            0.005938956027955743
           ]
         }
       ],
@@ -603,6 +978,66 @@
           "validation_target": 1.0,
           "coverage": 1.0,
           "error": 0.515658747300216,
+          "escalation": 0.0
+        }
+      ]
+    },
+    "markov_three_choice": {
+      "accuracy": 0.7273218142548596,
+      "log_loss": 0.551585035220991,
+      "risk_coverage": [
+        {
+          "validation_target": 0.1,
+          "coverage": 0.265658747300216,
+          "error": 0.16158536585365854,
+          "escalation": 0.734341252699784
+        },
+        {
+          "validation_target": 0.25,
+          "coverage": 0.265658747300216,
+          "error": 0.16158536585365854,
+          "escalation": 0.734341252699784
+        },
+        {
+          "validation_target": 0.5,
+          "coverage": 0.5442764578833693,
+          "error": 0.16666666666666666,
+          "escalation": 0.4557235421166307
+        },
+        {
+          "validation_target": 1.0,
+          "coverage": 1.0,
+          "error": 0.2726781857451404,
+          "escalation": 0.0
+        }
+      ]
+    },
+    "enriched_pooled_model": {
+      "accuracy": 0.7475701943844493,
+      "log_loss": 0.501764860957789,
+      "risk_coverage": [
+        {
+          "validation_target": 0.1,
+          "coverage": 0.07397408207343413,
+          "error": 0.010948905109489052,
+          "escalation": 0.9260259179265659
+        },
+        {
+          "validation_target": 0.25,
+          "coverage": 0.19438444924406048,
+          "error": 0.0763888888888889,
+          "escalation": 0.8056155507559395
+        },
+        {
+          "validation_target": 0.5,
+          "coverage": 0.48326133909287255,
+          "error": 0.1106145251396648,
+          "escalation": 0.5167386609071274
+        },
+        {
+          "validation_target": 1.0,
+          "coverage": 1.0,
+          "error": 0.25242980561555073,
           "escalation": 0.0
         }
       ]

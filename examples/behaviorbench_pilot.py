@@ -10,30 +10,39 @@ import re
 
 import numpy as np
 
-HISTORY = re.compile(r"^\d+\. Question: (.*?) \| Event: (.*?) \| Choice: (yes|no) \| Confidence:", re.M)
+HISTORY = re.compile(r"^\d+\. Question: (.*?) \| Event: (.*?) \| Choice: (yes|no) \| Confidence: ([0-9.eE+-]+)[ \t]*$", re.M)
 WORD = re.compile(r"[a-z]{3,}")
 
 
 def load(path):
     features, labels, wallets, groups, markets, start, end = [], [], [], [], [], [], []
+    rich, sequences, mixed = [], [], []
     with gzip.open(path, "rt", encoding="utf-8") as source:
         for line in source:
             row = json.loads(line)
             if row["split"] != "validation":
                 raise ValueError("This exploratory protocol uses publisher validation only.")
-            history = [(question, int(side == "yes"))
-                       for question, event, side in HISTORY.findall(row["input_text"])
+            history = [(question, int(side == "yes"), float(confidence))
+                       for question, event, side, confidence in HISTORY.findall(row["input_text"])
                        if event != row["event_slug"] and question != row["question"]]
             if len(history) < 5 or row["label_choice"] not in {"yes", "no"}:
                 continue
             target = set(WORD.findall(row["question"].lower()))
-            similar = [side for question, side in history
+            similar = [side for question, side, _ in history
                        if len(target & set(WORD.findall(question.lower()))) >= 4]
-            past = [side for _, side in history]
+            past = [side for _, side, _ in history]
             recent = past[-5:]
             features.append([1, float("draw" in target), (sum(past) + 1) / (len(past) + 2),
                              (sum(recent) + 1) / 7, past[-1],
                              (sum(similar) + 1) / (len(similar) + 2)])
+            weights = [confidence for _, _, confidence in history]
+            weighted_yes = sum(side * weight for side, weight in zip(past, weights))
+            switches = sum(a != b for a, b in zip(past, past[1:]))
+            rich.append([(weighted_yes + 1) / (sum(weights) + 2),
+                         sum(weights) / len(weights), weights[-1],
+                         switches / (len(past) - 1), np.log1p(len(past))])
+            sequences.append(4 * past[-3] + 2 * past[-2] + past[-1])
+            mixed.append(min(sum(past), len(past) - sum(past)) / len(past) >= .25)
             labels.append(int(row["label_choice"] == "yes"))
             wallet = row["wallet"]
             wallets.append(wallet)
@@ -41,7 +50,7 @@ def load(path):
             start.append(row["stance_first_block"])
             end.append(row["stance_last_block"])
             groups.append(int(hashlib.sha256(wallet.encode()).hexdigest()[:8], 16) % 10)
-    return tuple(np.asarray(column) for column in (features, labels, wallets, groups, markets, start, end))
+    return tuple(np.asarray(column) for column in (features, labels, wallets, groups, markets, start, end, rich, sequences, mixed))
 
 
 def sigmoid(value):
@@ -171,12 +180,48 @@ def compare(models, x, y, wallets, train, calibration, test):
             "market_prior_cases_with_earlier_observations": int(
                 np.count_nonzero(predictions["market_prior"] != models["population"][test]))}
 
+def markov_prior(sequences, labels, train):
+    """Estimate a pooled third-order transition with second-order backoff."""
+    previous = sequences % 4
+    n2 = np.bincount(previous[train], minlength=4)
+    y2 = np.bincount(previous[train], weights=labels[train], minlength=4)
+    backoff = (y2 + 10 * labels[train].mean()) / (n2 + 10)
+    n3 = np.bincount(sequences[train], minlength=8)
+    y3 = np.bincount(sequences[train], weights=labels[train], minlength=8)
+    return (y3[sequences] + 10 * backoff[previous]) / (n3[sequences] + 10)
+
+
+def mixed_curves(models, y, wallets, mask):
+    selected = ("personal_history_frequency", "recent_frequency", "markov_three_choice",
+                "pooled_history_model", "enriched_pooled_model")
+    names = {name: models[name][mask] for name in selected}
+    yt, wt = y[mask], wallets[mask]
+    ties = np.random.default_rng(20261128).random(len(yt))
+    correct = {name: (p >= .5) == yt for name, p in names.items()}
+    rank = {name: np.lexsort((ties, -abs(p - .5))) for name, p in names.items()}
+    curves = {}
+    reference = "enriched_pooled_model"
+    for name in names:
+        curve = []
+        for coverage in (.10, .15, .20, .25, .50, 1.):
+            count = round(len(yt) * coverage)
+            a, b = rank[reference][:count], rank[name][:count]
+            curve.append({"coverage": count / len(yt), "error": float((~correct[name][b]).mean()),
+                          "enriched_risk_reduction_ci95": matched_risk_interval(
+                              correct[reference], correct[name], a, b, wt)})
+        curves[name] = curve
+    return {"definition": "At least 25% of visible prior choices are on the minority side",
+            "cases": len(yt), "wallets": len(set(wt)), "curves": curves}
+
 def evaluate(path):
-    x, y, wallets, group, markets, start, end = load(path)
+    x, y, wallets, group, markets, start, end, rich, sequences, mixed = load(path)
     train, calibration, test = group < 6, (group >= 6) & (group < 8), group >= 8
     ones = np.full(len(y), y[train].mean())
+    enriched = np.column_stack((x, rich))
     models = {
         "population": ones,
+        "markov_three_choice": markov_prior(sequences, y, train),
+        "enriched_pooled_model": sigmoid(enriched @ fit(enriched[train], y[train])),
         "market_prior": market_prior(y, markets, start, end, train),
         "last_choice": .25 + .5 * x[:, 4],
         "recent_frequency": x[:, 3],
@@ -192,7 +237,8 @@ def evaluate(path):
         cuts.append((1.0, 0.0))
         result[name] = metrics(p[test], y[test], cuts)
     controls = compare(models, x, y, wallets, train, calibration, test)
-    return {"controls": controls, "design": "exploratory internal wallet-disjoint split of publisher validation",
+    mixed_result = mixed_curves(models, y, wallets, test & mixed)
+    return {"mixed_history": mixed_result, "controls": controls, "design": "exploratory internal wallet-disjoint split of publisher validation",
             "archive_sha256": hashlib.file_digest(path.open("rb"), "sha256").hexdigest(),
             "splits": {name: {"cases": int(mask.sum()), "wallets": len(set(wallets[mask]))}
                        for name, mask in (("train", train), ("calibration", calibration), ("test", test))},

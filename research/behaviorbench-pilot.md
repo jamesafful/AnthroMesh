@@ -72,3 +72,45 @@ and threshold rules. A candidate for the primary endpoint is at least
 one point lower error at 50% matched coverage with a positive paired
 wallet-bootstrap lower bound. No runtime integration is based on this
 exploratory pilot.
+
+## Mixed histories and sequential comparison
+
+A case qualifies when at least 25% of the visible earlier choices are on
+the minority side. The exploratory evaluation contains 1,775 eligible
+cases across 210 wallets. The enriched model adds confidence-weighted
+choice frequency, average and last confidence, choice-switch rate, and
+visible history length. Its paired sequential baseline is a third-order
+Markov model with second-order backoff.
+
+| Coverage | Original pooled error | Enriched pooled error | Recent frequency error | Markov error |
+| ---: | ---: | ---: | ---: | ---: |
+| 10% | 16.85% | 17.98% | 23.60% | 37.08% |
+| 15% | 15.41% | 18.42% | 26.32% | 35.34% |
+| 20% | 20.28% | 20.00% | 28.17% | 34.65% |
+| 25% | 21.85% | 21.85% | 28.60% | 34.01% |
+| 50% | 28.72% | 28.27% | 32.21% | 34.80% |
+
+The enriched model's 25%-coverage improvement over recent frequency was
+6.76 points (95% wallet-bootstrap interval +1.60 to +12.48). It tied the
+original pooled model there and had higher observed error at 10% and 15%.
+At full coverage across all cases, enriched accuracy was 74.76% and
+original pooled accuracy was 74.92%. Keep the original pooled model as
+the leading candidate for the frozen comparison.
+
+The history lines provide stance confidence and order, but no explicit
+per-history-row event timestamps, market category, or market odds.
+Switch rate measures sequence variation. History length counts visible
+stances, not trades. Neither measures activity timing or identifies bots.
+The official test labels and matched LLM comparison remain pending.
+
+For future risk control, a bounded calibration loss per wallet can use
+the fraction of all cases answered incorrectly minus the target risk
+times the fraction answered. Testing that its expectation is at most
+zero targets selective error for a uniformly sampled wallet and a
+uniformly sampled case within that wallet, conditional on answering.
+It requires comparable calibration and evaluation wallet clusters,
+positive coverage, and simultaneous validity across candidate cutoffs.
+An average of per-wallet answered-case error rates targets a different
+quantity. No guarantee was fitted or deployed in this pilot.
+
+[Learn then Test](https://arxiv.org/abs/2110.01052)
