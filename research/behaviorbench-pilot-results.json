@@ -1,0 +1,200 @@
+{
+  "design": "exploratory internal wallet-disjoint split of publisher validation",
+  "archive_sha256": "9cf5d6a4af3763edc69e0d517625535abcefed620636578b74bae91124da0a7e",
+  "splits": {
+    "train": {
+      "cases": 10512,
+      "wallets": 1064
+    },
+    "calibration": {
+      "cases": 3123,
+      "wallets": 342
+    },
+    "test": {
+      "cases": 3704,
+      "wallets": 372
+    }
+  },
+  "models": {
+    "population": {
+      "accuracy": 0.484341252699784,
+      "log_loss": 0.6932602968470799,
+      "risk_coverage": [
+        {
+          "validation_target": 0.1,
+          "coverage": 1.0,
+          "error": 0.515658747300216,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 0.25,
+          "coverage": 1.0,
+          "error": 0.515658747300216,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 0.5,
+          "coverage": 1.0,
+          "error": 0.515658747300216,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 1.0,
+          "coverage": 1.0,
+          "error": 0.515658747300216,
+          "escalation": 0.0
+        }
+      ]
+    },
+    "last_choice": {
+      "accuracy": 0.7081533477321814,
+      "log_loss": 0.608308391039855,
+      "risk_coverage": [
+        {
+          "validation_target": 0.1,
+          "coverage": 1.0,
+          "error": 0.2918466522678186,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 0.25,
+          "coverage": 1.0,
+          "error": 0.2918466522678186,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 0.5,
+          "coverage": 1.0,
+          "error": 0.2918466522678186,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 1.0,
+          "coverage": 1.0,
+          "error": 0.2918466522678186,
+          "escalation": 0.0
+        }
+      ]
+    },
+    "recent_frequency": {
+      "accuracy": 0.7375809935205183,
+      "log_loss": 0.5323220108567449,
+      "risk_coverage": [
+        {
+          "validation_target": 0.1,
+          "coverage": 0.2027537796976242,
+          "error": 0.12383488681757657,
+          "escalation": 0.7972462203023758
+        },
+        {
+          "validation_target": 0.25,
+          "coverage": 0.3952483801295896,
+          "error": 0.12158469945355191,
+          "escalation": 0.6047516198704104
+        },
+        {
+          "validation_target": 0.5,
+          "coverage": 0.6935745140388769,
+          "error": 0.1880108991825613,
+          "escalation": 0.3064254859611231
+        },
+        {
+          "validation_target": 1.0,
+          "coverage": 1.0,
+          "error": 0.26241900647948163,
+          "escalation": 0.0
+        }
+      ]
+    },
+    "personal_history_frequency": {
+      "accuracy": 0.7375809935205183,
+      "log_loss": 0.5154119299663589,
+      "risk_coverage": [
+        {
+          "validation_target": 0.1,
+          "coverage": 0.0494060475161987,
+          "error": 0.04371584699453552,
+          "escalation": 0.9505939524838013
+        },
+        {
+          "validation_target": 0.25,
+          "coverage": 0.20734341252699784,
+          "error": 0.055989583333333336,
+          "escalation": 0.7926565874730022
+        },
+        {
+          "validation_target": 0.5,
+          "coverage": 0.5056695464362851,
+          "error": 0.13561131873998933,
+          "escalation": 0.4943304535637149
+        },
+        {
+          "validation_target": 1.0,
+          "coverage": 1.0,
+          "error": 0.26241900647948163,
+          "escalation": 0.0
+        }
+      ]
+    },
+    "target_only": {
+      "accuracy": 0.517548596112311,
+      "log_loss": 0.6931346418360574,
+      "risk_coverage": [
+        {
+          "validation_target": 0.1,
+          "coverage": 1.0,
+          "error": 0.482451403887689,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 0.25,
+          "coverage": 1.0,
+          "error": 0.482451403887689,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 0.5,
+          "coverage": 1.0,
+          "error": 0.482451403887689,
+          "escalation": 0.0
+        },
+        {
+          "validation_target": 1.0,
+          "coverage": 1.0,
+          "error": 0.482451403887689,
+          "escalation": 0.0
+        }
+      ]
+    },
+    "pooled_history_model": {
+      "accuracy": 0.7491900647948164,
+      "log_loss": 0.500783615918251,
+      "risk_coverage": [
+        {
+          "validation_target": 0.1,
+          "coverage": 0.07451403887688984,
+          "error": 0.014492753623188406,
+          "escalation": 0.9254859611231101
+        },
+        {
+          "validation_target": 0.25,
+          "coverage": 0.18115550755939525,
+          "error": 0.06855439642324888,
+          "escalation": 0.8188444924406048
+        },
+        {
+          "validation_target": 0.5,
+          "coverage": 0.48893088552915764,
+          "error": 0.11430149088901159,
+          "escalation": 0.5110691144708424
+        },
+        {
+          "validation_target": 1.0,
+          "coverage": 1.0,
+          "error": 0.2508099352051836,
+          "escalation": 0.0
+        }
+      ]
+    }
+  }
+}
